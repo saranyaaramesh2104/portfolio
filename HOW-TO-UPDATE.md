@@ -54,6 +54,60 @@ Two rules and you cannot really break anything:
 If something does go wrong, GitHub keeps every previous version. Click the
 **History** button on the file and you can restore an earlier one.
 
+### How much text fits
+
+Most of the site simply reflows, so there is no limit you can "break" — longer
+writing just takes more lines. Only a few slots are genuinely tight, because the
+type is very large.
+
+I measured all of these on a 360-pixel-wide phone, which is the narrowest screen
+worth designing for. If it fits there, it fits everywhere.
+
+**The three that actually break.** Go over these and the text drops onto an
+extra line and the layout looks lopsided:
+
+| Slot | Keep it under | Example |
+|---|---|---|
+| Big heading, first line | 14 characters | `Selected`, `Community` |
+| Big heading, second line | 9 characters | `Work`, `& Social` |
+| The big numbers in the stats strip | 7 characters | `3,000+`, `64.7K` |
+
+Those two-part headings are the giant ones like **Selected / Work**. Wide
+capitals eat more room than narrow ones, so `& Identity` fits at ten characters
+while `Case Study` does not. When in doubt, go shorter — one word per line is
+what the design is built around.
+
+**Worth staying on one line.** These will wrap rather than break, and a second
+line is not a disaster. But they read best short:
+
+| Slot | One line if under |
+|---|---|
+| Work card title (`Morphic`, `Headout`) | 28 characters |
+| Section sub-heading (`Landing pages`) | 30 characters |
+| Heading inside a case study | 28 characters |
+| Link title (`College newsletter`) | 34 characters |
+| Link description (`2024 edition — PDF`) | 44 characters |
+| Image caption | 38 characters |
+
+**Paragraphs have no limit at all.** Write what the work needs. The only real
+constraint is attention, so as a rough guide:
+
+| Where | Comfortable length |
+|---|---|
+| The two intro paragraphs on the front page | 200–300 characters each, roughly 35–50 words |
+| The short intro under a section heading | up to about 350 characters |
+| A paragraph inside a case study | up to about 400 characters, then start a new one |
+| The text beside a featured project | about 150 characters — that column is narrow |
+
+Two or three short paragraphs always beat one long one. The text column is
+capped at a comfortable reading width on purpose, so it will never stretch into
+those very long lines that are hard to follow.
+
+**One thing to know.** On a phone, `& Marketing` and `Case Study` are each a
+hair too long and drop onto a second line. It is not broken, just slightly less
+tidy than the others. If it bothers you, shortening `& Marketing` to `& Brand`
+fixes it.
+
 ### Adding a new image
 
 1. Open the `assets` folder in your repository.
