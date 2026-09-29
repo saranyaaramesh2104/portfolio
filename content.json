@@ -1,0 +1,617 @@
+{
+  "home": [
+    {
+      "kind": "page",
+      "html": "Saranyaa Ramesh",
+      "text": "Saranyaa Ramesh",
+      "section": ""
+    },
+    {
+      "kind": "image",
+      "file": "assets/home-1.jpg",
+      "caption": "",
+      "original": "IMG_1310.jpeg",
+      "section": ""
+    },
+    {
+      "kind": "text",
+      "html": "Hey, I’m Saranyaa! I’m a writer and creative strategist with a background in psychology and journalism, working across content, brand, social, and growth. \n\nI bring together storytelling, strategy, and an understanding of people to make ideas resonate. I’m especially interested in the intersection of technology, behaviour, culture, and creativity, particularly across health tech, women’s health, and sports.",
+      "text": "Hey, I’m Saranyaa! I’m a writer and creative strategist with a background in psychology and journalism, working across content, brand, social, and growth. \n\nI bring together storytelling, strategy, and an understanding of people to make ideas resonate. I’m especially interested in the intersection of technology, behaviour, culture, and creativity, particularly across health tech, women’s health, and sports.",
+      "section": ""
+    },
+    {
+      "kind": "divider",
+      "html": "",
+      "text": "",
+      "section": ""
+    },
+    {
+      "kind": "sub_header",
+      "html": "Selected work ",
+      "text": "Selected work",
+      "section": "selected-work"
+    },
+    {
+      "kind": "page",
+      "html": "Morphic ",
+      "text": "Morphic",
+      "section": "selected-work"
+    },
+    {
+      "kind": "page",
+      "html": "Headout",
+      "text": "Headout",
+      "section": "selected-work"
+    },
+    {
+      "kind": "page",
+      "html": "YAAS media",
+      "text": "YAAS media",
+      "section": "selected-work"
+    },
+    {
+      "kind": "page",
+      "html": "Decoding Draupadi",
+      "text": "Decoding Draupadi",
+      "section": "selected-work"
+    },
+    {
+      "kind": "header",
+      "html": "✍🏼 Writing &amp; Marketing",
+      "text": "✍🏼 Writing & Marketing",
+      "section": "writing-marketing"
+    },
+    {
+      "kind": "divider",
+      "html": "",
+      "text": "",
+      "section": "writing-marketing"
+    },
+    {
+      "kind": "text",
+      "html": "Landing pages written and optimised for clarity, conversion, and user intent, with visuals included to show how the copy works within the final layout.",
+      "text": "Landing pages written and optimised for clarity, conversion, and user intent, with visuals included to show how the copy works within the final layout.",
+      "section": "writing-marketing"
+    },
+    {
+      "kind": "image",
+      "file": "assets/home-writing-marketing-1.jpg",
+      "caption": "",
+      "original": "Screenshot_2025-12-09_125659.png",
+      "section": "writing-marketing"
+    },
+    {
+      "kind": "image",
+      "file": "assets/home-writing-marketing-2.jpg",
+      "caption": "",
+      "original": "Screenshot_2025-12-05_231746.png",
+      "section": "writing-marketing"
+    },
+    {
+      "kind": "text",
+      "html": "\nSEO articles written with on-page optimization in mind, focused on clear structure and search intent. Screenshots show how these pieces rank on Google for their relevant keywords.",
+      "text": "SEO articles written with on-page optimization in mind, focused on clear structure and search intent. Screenshots show how these pieces rank on Google for their relevant keywords.",
+      "section": "writing-marketing"
+    },
+    {
+      "kind": "image",
+      "file": "assets/home-writing-marketing-3.jpg",
+      "caption": "",
+      "original": "image.png",
+      "section": "writing-marketing"
+    },
+    {
+      "kind": "image",
+      "file": "assets/home-writing-marketing-4.png",
+      "caption": "",
+      "original": "image.png",
+      "section": "writing-marketing"
+    },
+    {
+      "kind": "text",
+      "html": "keyword: grevin museum tickets",
+      "text": "keyword: grevin museum tickets",
+      "section": "writing-marketing"
+    },
+    {
+      "kind": "text",
+      "html": "Blogs written in a slice-of-life style, as well as long-form pieces on personal, educational, and psychology topics, along with a newsletter designed and written in college using Adobe InDesign.",
+      "text": "Blogs written in a slice-of-life style, as well as long-form pieces on personal, educational, and psychology topics, along with a newsletter designed and written in college using Adobe InDesign.",
+      "section": "writing-marketing"
+    },
+    {
+      "kind": "image",
+      "file": "assets/home-writing-marketing-5.jpg",
+      "caption": "",
+      "original": "image.png",
+      "section": "writing-marketing"
+    },
+    {
+      "kind": "image",
+      "file": "assets/home-writing-marketing-6.jpg",
+      "caption": "",
+      "original": "40c69b54-968d-4118-87aa-0d7cf99b286b.png",
+      "section": "writing-marketing"
+    },
+    {
+      "kind": "image",
+      "file": "assets/home-writing-marketing-7.jpg",
+      "caption": "",
+      "original": "cec9f29d-91b1-422f-853a-9ad726458e9b.png",
+      "section": "writing-marketing"
+    },
+    {
+      "kind": "pdf",
+      "file": "assets/home-writing-marketing-8.pdf",
+      "caption": "",
+      "original": "newsletter.pdf",
+      "section": "writing-marketing"
+    },
+    {
+      "kind": "text",
+      "html": "\nWorked on ghostwriting thought-leadership content, focusing on capturing the author’s voice and presenting ideas clearly and cohesively.",
+      "text": "Worked on ghostwriting thought-leadership content, focusing on capturing the author’s voice and presenting ideas clearly and cohesively.",
+      "section": "writing-marketing"
+    },
+    {
+      "kind": "image",
+      "file": "assets/home-writing-marketing-9.jpg",
+      "caption": "",
+      "original": "2d45f09e-ffda-4761-b600-366742b34a18.png",
+      "section": "writing-marketing"
+    },
+    {
+      "kind": "text",
+      "html": "Email marketing copy written for brand communication across lifestyle and experience-led campaigns, with a focus on storytelling, audience engagement, subject lines, and tone-driven messaging.",
+      "text": "Email marketing copy written for brand communication across lifestyle and experience-led campaigns, with a focus on storytelling, audience engagement, subject lines, and tone-driven messaging.",
+      "section": "writing-marketing"
+    },
+    {
+      "kind": "image",
+      "file": "assets/home-writing-marketing-10.jpg",
+      "caption": "",
+      "original": "CleanShot_2026-05-13_at_15.53.272x.png",
+      "section": "writing-marketing"
+    },
+    {
+      "kind": "sub_header",
+      "html": "\n 🎥  Content",
+      "text": "🎥  Content",
+      "section": "content"
+    },
+    {
+      "kind": "divider",
+      "html": "",
+      "text": "",
+      "section": "content"
+    },
+    {
+      "kind": "text",
+      "html": "Content created across Twitter and Instagram, with steady engagement on Twitter, where I post in a diary-style way that almost always gains some interaction. On Instagram, I run two accounts: one for photography and another for reels and short-form essays, where I experiment with captions, formats, and storytelling. I’ve also acted in brand-led digital content that performed strongly in terms of reach and engagement, giving me hands-on experience with on-camera storytelling and audience retention.   ",
+      "text": "Content created across Twitter and Instagram, with steady engagement on Twitter, where I post in a diary-style way that almost always gains some interaction. On Instagram, I run two accounts: one for photography and another for reels and short-form essays, where I experiment with captions, formats, and storytelling. I’ve also acted in brand-led digital content that performed strongly in terms of reach and engagement, giving me hands-on experience with on-camera storytelling and audience retention.",
+      "section": "content"
+    },
+    {
+      "kind": "image",
+      "file": "assets/home-content-1.jpg",
+      "caption": "",
+      "original": "Screenshot_2025-12-12_230513.png",
+      "section": "content"
+    },
+    {
+      "kind": "image",
+      "file": "assets/home-content-2.png",
+      "caption": "",
+      "original": "Screenshot_2025-12-12_230613.png",
+      "section": "content"
+    },
+    {
+      "kind": "image",
+      "file": "assets/home-content-3.png",
+      "caption": "",
+      "original": "Screenshot_2025-12-12_230645.png",
+      "section": "content"
+    },
+    {
+      "kind": "divider",
+      "html": "",
+      "text": "",
+      "section": "content"
+    },
+    {
+      "kind": "sub_header",
+      "html": "🟪 Design",
+      "text": "🟪 Design",
+      "section": "design"
+    },
+    {
+      "kind": "text",
+      "html": "Designs created for social media, focusing on clear layouts, simple visual storytelling, and consistent branding. ",
+      "text": "Designs created for social media, focusing on clear layouts, simple visual storytelling, and consistent branding.",
+      "section": "design"
+    },
+    {
+      "kind": "image",
+      "file": "assets/home-design-1.png",
+      "caption": "",
+      "original": "DD_(3).png",
+      "section": "design"
+    },
+    {
+      "kind": "image",
+      "file": "assets/home-design-2.jpg",
+      "caption": "",
+      "original": "stats_post.png",
+      "section": "design"
+    },
+    {
+      "kind": "image",
+      "file": "assets/home-design-3.jpg",
+      "caption": "",
+      "original": "Screenshot_2024-06-07_111018.png",
+      "section": "design"
+    },
+    {
+      "kind": "image",
+      "file": "assets/home-design-4.png",
+      "caption": "",
+      "original": "18.png",
+      "section": "design"
+    },
+    {
+      "kind": "text",
+      "html": "A Figma prototype developed for a college assignment, exploring app flow, basic UI structure, and user-focused design.",
+      "text": "A Figma prototype developed for a college assignment, exploring app flow, basic UI structure, and user-focused design.",
+      "section": "design"
+    },
+    {
+      "kind": "pdf",
+      "file": "assets/home-design-5.pdf",
+      "caption": "",
+      "original": "UI_Mental_Health_App.pdf",
+      "section": "design"
+    },
+    {
+      "kind": "divider",
+      "html": "",
+      "text": "",
+      "section": "design"
+    },
+    {
+      "kind": "sub_header",
+      "html": "🧑‍🤝‍🧑 <strong>Community</strong>",
+      "text": "🧑‍🤝‍🧑 Community",
+      "section": "community"
+    },
+    {
+      "kind": "sub_sub_header",
+      "html": "<strong>College Events</strong>",
+      "text": "College Events",
+      "section": "college-events"
+    },
+    {
+      "kind": "text",
+      "html": "Actively participated in college events and initiatives, contributing to planning, coordination, and community engagement.",
+      "text": "Actively participated in college events and initiatives, contributing to planning, coordination, and community engagement.",
+      "section": "college-events"
+    },
+    {
+      "kind": "image",
+      "file": "assets/home-college-events-1.jpg",
+      "caption": "",
+      "original": "7b401882-3137-4a29-911d-a18f702b9340.png",
+      "section": "college-events"
+    },
+    {
+      "kind": "text",
+      "html": "<strong>Self-Esteem Workshop\n</strong>Conducted a self-esteem workshop, designing activities and leading discussions for students.",
+      "text": "Self-Esteem Workshop\nConducted a self-esteem workshop, designing activities and leading discussions for students.",
+      "section": "college-events"
+    },
+    {
+      "kind": "image",
+      "file": "assets/home-college-events-2.jpg",
+      "caption": "",
+      "original": "20230613_131706_0000.jpg",
+      "section": "college-events"
+    },
+    {
+      "kind": "sub_sub_header",
+      "html": "<strong>Basketball Tournament Volunteering</strong>",
+      "text": "Basketball Tournament Volunteering",
+      "section": "basketball-tournament-volunteeri"
+    },
+    {
+      "kind": "text",
+      "html": "Volunteered at a basketball tournament, helping with event organization and smooth on-ground coordination.",
+      "text": "Volunteered at a basketball tournament, helping with event organization and smooth on-ground coordination.",
+      "section": "basketball-tournament-volunteeri"
+    },
+    {
+      "kind": "image",
+      "file": "assets/home-basketball-tournament-volunteeri-1.jpg",
+      "caption": "",
+      "original": "IMG_2220.jpeg",
+      "section": "basketball-tournament-volunteeri"
+    },
+    {
+      "kind": "sub_sub_header",
+      "html": "<strong>Mental Health Discord Moderation</strong>",
+      "text": "Mental Health Discord Moderation",
+      "section": "mental-health-discord-moderation"
+    },
+    {
+      "kind": "text",
+      "html": "Moderated a mental health–focused Discord group, creating a supportive space and facilitating conversations.",
+      "text": "Moderated a mental health–focused Discord group, creating a supportive space and facilitating conversations.",
+      "section": "mental-health-discord-moderation"
+    },
+    {
+      "kind": "image",
+      "file": "assets/home-mental-health-discord-moderation-1.jpg",
+      "caption": "",
+      "original": "3e59b872-e5e5-41e2-9b25-deec3ead74b8.png",
+      "section": "mental-health-discord-moderation"
+    },
+    {
+      "kind": "divider",
+      "html": "",
+      "text": "",
+      "section": "mental-health-discord-moderation"
+    },
+    {
+      "kind": "sub_header",
+      "html": "💜 Personal Projects",
+      "text": "💜 Personal Projects",
+      "section": "personal-projects"
+    },
+    {
+      "kind": "sub_sub_header",
+      "html": "<strong>Photography</strong>",
+      "text": "Photography",
+      "section": "photography"
+    },
+    {
+      "kind": "text",
+      "html": "Portraits of people, documented on a dedicated photography Instagram account.",
+      "text": "Portraits of people, documented on a dedicated photography Instagram account.",
+      "section": "photography"
+    },
+    {
+      "kind": "sub_sub_header",
+      "html": "<strong>Postcards</strong>",
+      "text": "Postcards",
+      "section": "postcards"
+    },
+    {
+      "kind": "text",
+      "html": "Custom postcards designed and sent during travels and as a yearly tradition, combining photography, illustration, and personal storytelling.",
+      "text": "Custom postcards designed and sent during travels and as a yearly tradition, combining photography, illustration, and personal storytelling.",
+      "section": "postcards"
+    },
+    {
+      "kind": "pdf",
+      "file": "assets/home-postcards-1.pdf",
+      "caption": "",
+      "original": "final_postcard_print_2024.pdf",
+      "section": "postcards"
+    },
+    {
+      "kind": "sub_sub_header",
+      "html": "<strong>\nLetterboxd</strong>",
+      "text": "Letterboxd",
+      "section": "letterboxd"
+    },
+    {
+      "kind": "text",
+      "html": "<strong>I love films and watch a lot of them, and sometimes I write about them too. This is the Letterboxd account where I log everything.</strong>",
+      "text": "I love films and watch a lot of them, and sometimes I write about them too. This is the Letterboxd account where I log everything.",
+      "section": "letterboxd"
+    },
+    {
+      "kind": "bookmark",
+      "text": "Anya’s profile on Letterboxd",
+      "link": "https://letterboxd.com/anya_2104/",
+      "section": "letterboxd"
+    },
+    {
+      "kind": "divider",
+      "html": "",
+      "text": "",
+      "section": "letterboxd"
+    },
+    {
+      "kind": "sub_sub_header",
+      "html": "Thank you for going through my portfolio. If you’re interested in working together, here’s how you can contact me:\n",
+      "text": "Thank you for going through my portfolio. If you’re interested in working together, here’s how you can contact me:",
+      "section": "thank-you-for-going-through-my-p"
+    },
+    {
+      "kind": "bulleted_list",
+      "html": "Email: saranyaar2104@gmail.com",
+      "text": "Email: saranyaar2104@gmail.com",
+      "section": "thank-you-for-going-through-my-p"
+    },
+    {
+      "kind": "bulleted_list",
+      "html": "LinkedIn: ",
+      "text": "LinkedIn:",
+      "section": "thank-you-for-going-through-my-p"
+    },
+    {
+      "kind": "bulleted_list",
+      "html": "Instagram: ",
+      "text": "Instagram:",
+      "section": "thank-you-for-going-through-my-p"
+    },
+    {
+      "kind": "bulleted_list",
+      "html": "Twitter (X): ",
+      "text": "Twitter (X):",
+      "section": "thank-you-for-going-through-my-p"
+    },
+    {
+      "kind": "bulleted_list",
+      "html": "My Resume:",
+      "text": "My Resume:",
+      "section": "thank-you-for-going-through-my-p"
+    },
+    {
+      "kind": "pdf",
+      "file": "assets/saranyaa-resume.pdf",
+      "caption": "",
+      "original": "Saranyaa_resume_(june_2026).pdf",
+      "section": "thank-you-for-going-through-my-p"
+    },
+    {
+      "kind": "divider",
+      "html": "",
+      "text": "",
+      "section": "thank-you-for-going-through-my-p"
+    }
+  ],
+  "morphic": [
+    {
+      "kind": "page",
+      "html": "Morphic ",
+      "text": "Morphic",
+      "section": ""
+    },
+    {
+      "kind": "text",
+      "html": "Brand · Social · Content · Product Marketing",
+      "text": "Brand · Social · Content · Product Marketing",
+      "section": ""
+    },
+    {
+      "kind": "text",
+      "html": "Communication and narrative-building for an generative AI video startup.",
+      "text": "Communication and narrative-building for an generative AI video startup.",
+      "section": ""
+    },
+    {
+      "kind": "callout",
+      "html": "",
+      "text": "",
+      "section": ""
+    },
+    {
+      "kind": "text",
+      "html": "<strong>300+ \n</strong>creators researched",
+      "text": "300+ \ncreators researched",
+      "section": ""
+    },
+    {
+      "kind": "callout",
+      "html": "",
+      "text": "",
+      "section": ""
+    },
+    {
+      "kind": "text",
+      "html": "<strong>50+ </strong>\ncreator collaborations closed ",
+      "text": "50+ \ncreator collaborations closed",
+      "section": ""
+    },
+    {
+      "kind": "divider",
+      "html": "",
+      "text": "",
+      "section": ""
+    },
+    {
+      "kind": "sub_header",
+      "html": "The Role",
+      "text": "The Role",
+      "section": "the-role"
+    },
+    {
+      "kind": "text",
+      "html": "I joined Morphic as a Communication &amp; Narrative Operator, working across product marketing, brand communication, creator partnerships, and written content. My role sat at the intersection of strategy and execution: shaping how we talked about the product, building narratives around launches and campaigns, and getting those stories in front of the right audiences.",
+      "text": "I joined Morphic as a Communication & Narrative Operator, working across product marketing, brand communication, creator partnerships, and written content. My role sat at the intersection of strategy and execution: shaping how we talked about the product, building narratives around launches and campaigns, and getting those stories in front of the right audiences.",
+      "section": "the-role"
+    },
+    {
+      "kind": "divider",
+      "html": "",
+      "text": "",
+      "section": "the-role"
+    },
+    {
+      "kind": "sub_header",
+      "html": "Product marketing &amp; launch",
+      "text": "Product marketing & launch",
+      "section": "product-marketing-launch"
+    },
+    {
+      "kind": "image",
+      "file": "assets/morphic-product-marketing-launch-1.png",
+      "caption": "",
+      "original": "Screenshot_2026-09-15_at_5.39.35_PM.png",
+      "section": "product-marketing-launch"
+    },
+    {
+      "kind": "image",
+      "file": "assets/morphic-product-marketing-launch-2.png",
+      "caption": "",
+      "original": "Screenshot_2026-09-15_at_5.42.48_PM.png",
+      "section": "product-marketing-launch"
+    },
+    {
+      "kind": "image",
+      "file": "assets/morphic-product-marketing-launch-3.jpg",
+      "caption": "",
+      "original": "Screenshot_2026-09-15_at_5.44.02_PM.png",
+      "section": "product-marketing-launch"
+    },
+    {
+      "kind": "image",
+      "file": "assets/morphic-product-marketing-launch-4.png",
+      "caption": "",
+      "original": "Screenshot_2026-09-15_at_5.41.34_PM.png",
+      "section": "product-marketing-launch"
+    }
+  ],
+  "headout": [
+    {
+      "kind": "page",
+      "html": "Headout",
+      "text": "Headout",
+      "section": ""
+    },
+    {
+      "kind": "text",
+      "html": "SEO · Content · Product Marketing",
+      "text": "SEO · Content · Product Marketing",
+      "section": ""
+    }
+  ],
+  "yaas-media": [
+    {
+      "kind": "page",
+      "html": "YAAS media",
+      "text": "YAAS media",
+      "section": ""
+    },
+    {
+      "kind": "text",
+      "html": "Social · Video · Creative · Storytelling",
+      "text": "Social · Video · Creative · Storytelling",
+      "section": ""
+    }
+  ],
+  "decoding-draupadi": [
+    {
+      "kind": "page",
+      "html": "Decoding Draupadi",
+      "text": "Decoding Draupadi",
+      "section": ""
+    },
+    {
+      "kind": "text",
+      "html": "Social · Community · Content · Events",
+      "text": "Social · Community · Content · Events",
+      "section": ""
+    }
+  ]
+}

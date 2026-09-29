@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+  <!-- Ten-lobed asterisk used as a bullet throughout Saranyaa's social designs. -->
+  <g fill="#c32824">
+    <g>
+      <rect x="88" y="6" width="24" height="94" rx="12"/>
+      <rect x="88" y="6" width="24" height="94" rx="12" transform="rotate(36 100 100)"/>
+      <rect x="88" y="6" width="24" height="94" rx="12" transform="rotate(72 100 100)"/>
+      <rect x="88" y="6" width="24" height="94" rx="12" transform="rotate(108 100 100)"/>
+      <rect x="88" y="6" width="24" height="94" rx="12" transform="rotate(144 100 100)"/>
+      <rect x="88" y="6" width="24" height="94" rx="12" transform="rotate(180 100 100)"/>
+      <rect x="88" y="6" width="24" height="94" rx="12" transform="rotate(216 100 100)"/>
+      <rect x="88" y="6" width="24" height="94" rx="12" transform="rotate(252 100 100)"/>
+      <rect x="88" y="6" width="24" height="94" rx="12" transform="rotate(288 100 100)"/>
+      <rect x="88" y="6" width="24" height="94" rx="12" transform="rotate(324 100 100)"/>
+    </g>
+    <circle cx="100" cy="100" r="30"/>
+  </g>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+  <!-- Quartered circle, lifted from Saranyaa's Decoding Draupadi "This July" post.
+       Colours sampled from the original artwork. -->
+  <path d="M96 4A96 96 0 0 0 4 96h92z" fill="#c32824"/>
+  <path d="M104 4A96 96 0 0 1 196 96h-92z" fill="#f0655f"/>
+  <path d="M4 104a96 96 0 0 0 92 92v-92z" fill="#f0655f"/>
+  <path d="M196 104a96 96 0 0 1-92 92v-92z" fill="#c32824"/>
+</svg>
