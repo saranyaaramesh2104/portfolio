@@ -1,81 +1,37 @@
-# Your website — how to put it online and change it later
+# Your website — how to change it
 
-Hi Saranyaa! This is your portfolio, rebuilt as a real website. You never need
-to use a terminal or install anything. Everything below happens in a browser.
+Hi Saranyaa! Your portfolio is live at
+**https://saranyaaramesh2104.github.io/portfolio/**
 
-There are three parts:
+You never need a terminal or any installs. Everything below happens in a browser.
 
-1. [Putting it online](#part-1--put-it-online) — about 10 minutes, once
-2. [Changing text and images later](#part-2--change-things-later)
-3. [The list of things still to do](#part-3--what-still-needs-you)
+There are two parts:
 
----
-
-## Part 1 — Put it online
-
-### Step 1. Make a GitHub account
-
-Go to [github.com/signup](https://github.com/signup) and sign up. Pick your
-username carefully, because it becomes part of your web address. Something like
-`saranyaaramesh` is ideal.
-
-Free is all you need.
-
-### Step 2. Make a place for the site to live
-
-1. Click the **+** in the top-right of GitHub, then **New repository**.
-2. Name it exactly `portfolio` (all lowercase).
-3. Leave it set to **Public**. It has to be public for the site to work.
-4. Do not tick "Add a README file".
-5. Click **Create repository**.
-
-### Step 3. Upload the files
-
-On the page that appears, click the link that says
-**uploading an existing file**.
-
-Now open the `saranyaa-portfolio` folder on your computer. Select everything
-*inside* it — `index.html`, the `assets` folder, and the rest — and drag it all
-into the browser window.
-
-> Important: drag the *contents* of the folder, not the folder itself.
-> `index.html` has to end up at the top level, or the site will not load.
-
-Wait for the uploads to finish, then click **Commit changes** at the bottom.
-
-### Step 4. Switch the website on
-
-1. In your repository, click **Settings** (the tab along the top).
-2. In the left sidebar, click **Pages**.
-3. Under "Branch", change `None` to `main`, leave the folder as `/ (root)`, and
-   click **Save**.
-
-Wait two or three minutes, then visit:
-
-```
-https://YOUR-USERNAME.github.io/portfolio/
-```
-
-That is your website. It is live, it is yours, and it costs nothing.
-
-### Step 5. One small fix once you know the address
-
-Open `index.html` (see Part 2 for how) and use your browser's find function to
-look for `USERNAME`. It appears five times near the top. Replace each one with
-your actual GitHub username.
-
-This is what makes your photo and your name show up when you paste the link
-into LinkedIn, Instagram, or WhatsApp. Worth doing — right now your Notion link
-shows Notion's logo and Notion's marketing text instead of yours, which is
-exactly the problem we were fixing.
+1. [Changing text and images](#part-1--change-things)
+2. [The list of things still to do](#part-2--what-still-needs-you)
 
 ---
 
-## Part 2 — Change things later
+## Already set up
+
+You do not need to do any of this again, it is just here so you know how it
+works:
+
+- The files live in your GitHub repository called **portfolio**.
+- GitHub Pages is switched on, serving from the `main` branch at the root. You
+  can see the setting under **Settings → Pages**.
+- Every time you commit a change, the site rebuilds itself and goes live about a
+  minute later. There is no publish button.
+- It is free, with no bandwidth limit you are realistically going to hit, and no
+  badge or branding on your site.
+
+---
+
+## Part 1 — Change things
 
 ### Editing text
 
-1. Go to your repository on GitHub.
+1. Go to your `portfolio` repository on GitHub.
 2. Click `index.html`.
 3. Click the **pencil icon** near the top right.
 4. Find the words you want to change and type over them.
@@ -129,7 +85,7 @@ a **Custom domain** box on the same Settings → Pages screen.
 
 ---
 
-## Part 3 — What still needs you
+## Part 2 — What still needs you
 
 Ordered by how much difference it makes.
 
@@ -152,17 +108,20 @@ the whole portfolio. It just needs the story around it.
 card from the Selected work section for now. An empty page reads worse than a
 missing one.
 
-### 2. Add your LinkedIn link
+### 2. Check your LinkedIn link actually goes to you
 
-Search `index.html` for `YOUR-LINKEDIN-HERE` and paste your profile address over
-it. I could not recover this one from Notion — the link was stored in a way the
-public page does not expose.
+It is now set to `linkedin.com/in/saranyaaramesh`. I cannot verify that from
+here — LinkedIn blocks automated checks — so please click it on the live site
+while you are signed in and confirm it lands on your profile. If your profile
+address is different, search `index.html` for `saranyaaramesh` and you will find
+it in two places: the link itself and the small grey label under it. Change both.
 
-I did find the others, so these are already in and working:
+Your other links are all in and working:
 
 | | |
 |---|---|
 | Email | saranyaar2104@gmail.com |
+| LinkedIn | in/saranyaaramesh |
 | Twitter | @holasaranyahere |
 | Instagram | @helloitsmeanyaaa |
 | Photography | @throughanyaslens |
