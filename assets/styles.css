@@ -110,7 +110,6 @@ a:hover { color: var(--accent); }
 .skip-link:focus { top: 0; color: var(--accent-ink); }
 
 .wrap { width: 100%; max-width: var(--page); margin: 0 auto; padding: 0 clamp(1.15rem, 4vw, 2.75rem); }
-.wrap--narrow { max-width: 880px; }
 
 /* ── Split display headings ───────────────────────────────────────────────
    One title, two typefaces, second line indented so it breaks the margin.
@@ -153,7 +152,6 @@ a:hover { color: var(--accent); }
 }
 
 .section-intro { color: var(--text-muted); max-width: var(--measure); font-size: 1.04rem; }
-.lede { font-size: 1.12rem; color: var(--text-muted); max-width: var(--measure); }
 
 /* ── Nav ──────────────────────────────────────────────────────────────── */
 .nav {
@@ -297,12 +295,6 @@ html[data-theme="dark"] .icon-sun, html[data-theme="light"] .icon-moon { display
 .section--hair { border-top: 1px solid var(--border); }
 .section-head { margin-bottom: clamp(1.5rem, 4vw, 2.5rem); }
 
-/* A shape from Saranyaa's own artwork, set beside the heading it belongs to. */
-.head-mark { display: flex; align-items: center; gap: clamp(1rem, 4vw, 2.5rem); margin-bottom: clamp(.85rem, 2vw, 1.4rem); }
-.head-mark .dsplit { margin-bottom: 0; }
-.head-mark .mark { width: clamp(64px, 11vw, 132px); flex: 0 0 auto; }
-@media (max-width: 640px) { .head-mark .mark { display: none; } }
-
 /* ── Marquee ──────────────────────────────────────────────────────────── */
 .marquee {
   background: var(--bg); color: var(--text);
@@ -393,25 +385,9 @@ html[data-theme="dark"] .icon-sun, html[data-theme="light"] .icon-moon { display
   letter-spacing: .1em; text-transform: uppercase;
 }
 
-/* ── Craft blocks — alternating offsets rather than a uniform stack ───── */
-.block { display: grid; gap: .9rem; }
-.block + .block { margin-top: clamp(2.5rem, 6vw, 4rem); }
-
-.block-title {
-  font-family: var(--font-wide);
-  font-size: .72rem; font-weight: 700;
-  letter-spacing: .16em; text-transform: uppercase;
-  color: var(--accent);
-}
-
-.block-note { color: var(--text-muted); max-width: var(--measure); }
-/* Every other block steps in from the left on wide screens. */
-.block--inset { padding-left: clamp(0px, 8vw, 7rem); }
-
 .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: var(--gap); margin-top: .35rem; }
 .shots--tight { grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr)); }
 .shots--one { grid-template-columns: minmax(0, 460px); }
-.shots--wide { grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); }
 
 /* Images sit directly on the page. Framing every one in a bordered card was
    what made the layout feel boxy. */
@@ -439,15 +415,6 @@ figcaption {
   letter-spacing: .1em; text-transform: uppercase; color: var(--text-dim);
 }
 
-/* Design work runs edge to edge. Placed as a direct child of the section
-   rather than inside .wrap, so it fills the width without any 100vw overflow. */
-.bleed-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
-  margin-top: clamp(1.25rem, 3vw, 2rem);
-}
-@media (max-width: 760px) { .bleed-grid { grid-template-columns: repeat(2, 1fr); } }
-.bleed-grid img { aspect-ratio: 1 / 1; object-fit: cover; width: 100%; cursor: zoom-in; }
-
 /* ── Link cards ───────────────────────────────────────────────────────── */
 .link-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)); gap: .6rem; }
 .link-cards:has(> :only-child) { grid-template-columns: minmax(0, 460px); }
@@ -464,17 +431,6 @@ figcaption {
 .link-card-text { display: grid; gap: .08rem; min-width: 0; }
 .link-card-text strong { font-size: .92rem; font-weight: 600; }
 .link-card-text span { font-size: .76rem; color: var(--text-dim); overflow-wrap: anywhere; }
-
-/* ── Community ────────────────────────────────────────────────────────── */
-.community-grid { display: grid; grid-template-columns: 1fr; gap: var(--gap); }
-@media (min-width: 560px) { .community-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (min-width: 1000px) { .community-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-
-.community-card { display: flex; flex-direction: column; gap: .8rem; }
-.community-card img { aspect-ratio: 4 / 3; object-fit: cover; cursor: zoom-in; border-radius: 6px; }
-.community-card-body { display: grid; gap: .3rem; }
-.community-card-body h3 { font-family: var(--font-wide); font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
-.community-card-body p { font-size: .88rem; color: var(--text-muted); }
 
 /* ── Contact ──────────────────────────────────────────────────────────── */
 .contact-grid { display: grid; grid-template-columns: 1fr minmax(0, 420px); gap: clamp(1.75rem, 5vw, 3.5rem); align-items: start; }
@@ -681,7 +637,6 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
   .section { page-break-inside: avoid; }
 }
 
-
 /* ── Tiles ────────────────────────────────────────────────────────────────
    One box, reused three ways: work that is not a full case study, the off
    the clock items, and the services grid. Saranyaa adds an item by copying
@@ -722,7 +677,12 @@ a.tile:active { transform: translateY(0); }
 }
 /* Inner radius tighter than the container it sits in. */
 .tile-img { width: 100%; aspect-ratio: 16 / 11; object-fit: cover; border-radius: 8px; margin-bottom: .9rem; }
-.tile--empty { border: 1px dashed var(--border); background: none; }
+/* Screenshots whose text starts hard against the left edge; a centred crop
+   would slice the first word of every line. */
+.tile-img--left { object-position: left center; }
+/* Other work carries images and sits directly above Off the clock, which is
+   text-only. The wider track keeps the two rows from reading as a repeat. */
+.tile-grid--wide { grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); }
 
 /* ── Audit fixes ──────────────────────────────────────────────────────────
    Pressed feedback was missing everywhere: things lifted on hover but gave
@@ -736,11 +696,8 @@ a.tile:active { transform: translateY(0); }
 .stat b, .metric b, .feature-metrics div b { font-variant-numeric: tabular-nums; }
 
 /* Stops a single word dangling on its own final line. */
-p, .tile p, .block-note, .section-intro { text-wrap: pretty; }
+p, .tile p, .section-intro { text-wrap: pretty; }
 .feature-body h3, .work-card-body h3, .creator-point h3, .brief-point h3 { text-wrap: balance; }
-
-/* Was an inline style attribute on the markup. */
-.block--gap { margin-top: clamp(1.75rem, 4vw, 2.75rem); }
 
 /* Inline validation message for the composer. */
 .field-error { margin-top: .4rem; font-size: .82rem; color: var(--accent); }
