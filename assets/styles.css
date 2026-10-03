@@ -22,6 +22,16 @@
   --measure: 64ch;
   --page: 1180px;
   --radius: 4px;
+  /* Radius scale. Containers take --r-lg, anything sitting inside them drops
+     one step, which is what makes nested corners look machined. */
+  --r-lg: 15px;
+  --r-md: 10px;
+  --r-sm: 6px;
+
+  /* Motion. One pair of curves so nothing eases on the browser default:
+     --ease for interface moves, --ease-out for things entering the page. */
+  --ease: cubic-bezier(.32, .72, 0, 1);
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
   --gap: clamp(1rem, 2.6vw, 1.75rem);
 
   /* Her artwork colours, kept as fixed brand values. */
@@ -48,6 +58,9 @@ html[data-theme="dark"] .ink {
   --accent-ink: #fff8ec;
   --accent-soft: #f8e4e4;
   --shadow: 0 1px 2px rgba(36, 21, 15, .06), 0 18px 40px -20px rgba(36, 21, 15, .2);
+  --hairline: rgba(36, 21, 15, .07);
+  --highlight: rgba(255, 255, 255, .75);
+  --shadow-tint: rgba(36, 21, 15, .17);
   --grain-blend: multiply;
   --grain-opacity: .34;
 }
@@ -65,6 +78,9 @@ html[data-theme="light"] .ink {
   --accent-ink: #1a0f0c;
   --accent-soft: #3d201c;
   --shadow: 0 1px 2px rgba(0, 0, 0, .45), 0 20px 44px -20px rgba(0, 0, 0, .8);
+  --hairline: rgba(255, 255, 255, .055);
+  --highlight: rgba(255, 255, 255, .05);
+  --shadow-tint: rgba(0, 0, 0, .7);
   --grain-blend: screen;
   --grain-opacity: .12;
 }
@@ -79,7 +95,7 @@ body {
   font-size: 1rem;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  transition: background .3s ease, color .3s ease;
+  transition: background .3s var(--ease), color .3s var(--ease);
 }
 
 /* Film grain. Sits above the page but ignores pointer events, and stays below
@@ -103,11 +119,13 @@ a:hover { color: var(--accent); }
 :focus-visible { outline: 2.5px solid var(--accent); outline-offset: 3px; }
 
 .skip-link {
-  position: absolute; left: 1rem; top: -4rem; z-index: 100;
+  position: absolute; left: 1rem; top: 0; z-index: 100;
   padding: .7rem 1.1rem; background: var(--accent); color: var(--accent-ink);
-  font-weight: 600; transition: top .2s ease;
+  font-weight: 600;
+  /* Moved with transform rather than `top` so showing it cannot cause reflow. */
+  transform: translateY(-160%); transition: transform .2s var(--ease);
 }
-.skip-link:focus { top: 0; color: var(--accent-ink); }
+.skip-link:focus { transform: translateY(0); color: var(--accent-ink); }
 
 .wrap { width: 100%; max-width: var(--page); margin: 0 auto; padding: 0 clamp(1.15rem, 4vw, 2.75rem); }
 
@@ -183,7 +201,7 @@ a:hover { color: var(--accent); }
   display: grid; place-items: center; width: 36px; height: 36px; flex: 0 0 auto;
   border: 1px solid var(--border); border-radius: 50%;
   background: transparent; color: var(--text); cursor: pointer;
-  transition: border-color .2s ease, color .2s ease;
+  transition: border-color .2s var(--ease), color .2s var(--ease);
 }
 .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
 .icon-btn svg { width: 17px; height: 17px; }
@@ -281,7 +299,7 @@ html[data-theme="dark"] .icon-sun, html[data-theme="light"] .icon-moon { display
   font-size: .72rem; font-weight: 600;
   letter-spacing: .1em; text-transform: uppercase;
   text-decoration: none;
-  transition: border-color .2s ease, color .2s ease, transform .2s ease;
+  transition: border-color .2s var(--ease), color .2s var(--ease), transform .2s var(--ease);
 }
 .pill:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 .pill--solid { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
@@ -339,14 +357,14 @@ html[data-theme="dark"] .icon-sun, html[data-theme="light"] .icon-moon { display
   align-items: center;
   text-decoration: none;
   margin-bottom: clamp(2rem, 5vw, 3.25rem);
-  transition: transform .25s ease;
+  transition: transform .25s var(--ease);
 }
 .feature:hover { color: inherit; }
 .feature:hover .feature-img { transform: scale(1.015); }
 .feature:hover .work-card-more { color: var(--accent); }
 @media (max-width: 800px) { .feature { grid-template-columns: 1fr; } }
 
-.feature-img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: top center; border-radius: 6px; transition: transform .4s ease; }
+.feature-img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: top center; border-radius: var(--r-md); transition: transform .4s var(--ease); }
 .feature-body { display: flex; flex-direction: column; gap: .65rem; justify-content: center; }
 .feature-body h3 { font-family: var(--font-display); font-size: clamp(1.7rem, 3.4vw, 2.5rem); font-weight: 500; letter-spacing: -.02em; line-height: 1.05; }
 .feature-kicker { font-family: var(--font-wide); font-size: .66rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--accent); }
@@ -358,18 +376,18 @@ html[data-theme="dark"] .icon-sun, html[data-theme="light"] .icon-moon { display
 .work-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); }
 @media (max-width: 800px) { .work-row { grid-template-columns: 1fr; } }
 
-.work-card { display: flex; flex-direction: column; gap: .85rem; text-decoration: none; transition: transform .25s ease; }
+.work-card { display: flex; flex-direction: column; gap: .85rem; text-decoration: none; transition: transform .25s var(--ease); }
 .work-card:hover { color: inherit; }
 .work-card:hover .work-card-img, .work-card:hover .work-card-blank { transform: scale(1.015); }
 .work-card:hover .work-card-more { color: var(--accent); }
 
-.work-card-img { aspect-ratio: 16 / 11; width: 100%; object-fit: cover; object-position: top center; border-radius: 6px; transition: transform .4s ease; }
+.work-card-img { aspect-ratio: 16 / 11; width: 100%; object-fit: cover; object-position: top center; border-radius: var(--r-md); transition: transform .4s var(--ease); }
 .work-card-blank {
   aspect-ratio: 16 / 11;
   display: grid; place-items: center;
   background: var(--bg-soft);
-  border-radius: 6px;
-  transition: transform .4s ease;
+  border-radius: var(--r-md);
+  transition: transform .4s var(--ease);
 }
 .work-card-blank img { width: 44%; opacity: .75; }
 
@@ -393,7 +411,7 @@ html[data-theme="dark"] .icon-sun, html[data-theme="light"] .icon-moon { display
    what made the layout feel boxy. */
 figure { background: none; border: 0; }
 
-.shot { width: 100%; cursor: zoom-in; border-radius: 6px; transition: transform .4s ease, opacity .2s ease; }
+.shot { width: 100%; cursor: zoom-in; border-radius: var(--r-md); transition: transform .4s var(--ease), opacity .2s var(--ease); }
 .shot:hover { opacity: .94; }
 .shot--cover { aspect-ratio: 16 / 10; object-fit: cover; object-position: top center; }
 .shot--square { aspect-ratio: 1 / 1; object-fit: cover; }
@@ -405,8 +423,8 @@ figure { background: none; border: 0; }
 /* Screenshots of very different shapes sat at different heights, so the row
    looked ragged. A shared surface gives them one silhouette and lines the
    captions up, without cropping anything out of the picture. */
-.shots--slides figure { background: var(--bg-card); border-radius: 10px; padding: .7rem .7rem .15rem; }
-.shots--slides .shot { object-position: center; border-radius: 4px; }
+.shots--slides figure { background: var(--bg-card); border-radius: var(--r-lg); padding: .7rem .7rem .15rem; }
+.shots--slides .shot { object-position: center; border-radius: var(--r-sm); }
 .shots--slides figcaption { padding: .55rem .15rem .25rem; }
 
 figcaption {
@@ -424,9 +442,11 @@ figcaption {
   padding: .75rem 0;
   border-bottom: 1px solid var(--border);
   text-decoration: none;
-  transition: border-color .2s ease, padding-left .2s ease;
+  transition: border-color .2s var(--ease);
 }
-.link-card:hover { border-color: var(--accent); padding-left: .4rem; color: inherit; }
+.link-card:hover { border-color: var(--accent); color: inherit; }
+.link-card svg, .link-card-text { transition: transform .25s var(--ease); }
+.link-card:hover svg, .link-card:hover .link-card-text { transform: translateX(.4rem); }
 .link-card svg { width: 18px; height: 18px; flex: 0 0 auto; color: var(--accent); }
 .link-card-text { display: grid; gap: .08rem; min-width: 0; }
 .link-card-text strong { font-size: .92rem; font-weight: 600; }
@@ -453,9 +473,32 @@ figcaption {
   font-family: var(--font-wide); font-size: .72rem; font-weight: 700;
   letter-spacing: .13em; text-transform: uppercase;
   cursor: pointer; justify-self: start;
-  transition: filter .2s ease, transform .2s ease;
+  border-radius: 999px;
+  display: inline-flex; align-items: center;
+  transition: filter .2s var(--ease), transform .2s var(--ease);
 }
 .btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
+
+/* Button-in-button. The arrow never floats naked beside the label; it sits in
+   its own disc, pulled flush with the button's right padding, and leans on
+   hover so the whole control feels like it has internal tension. */
+.cta-go {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 1.55em; height: 1.55em; flex: 0 0 auto;
+  margin-left: .55em; margin-right: -.5em;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-ink) 22%, transparent);
+  transition: transform .3s var(--ease), background .3s var(--ease);
+}
+.cta-go svg { width: .66em; height: .66em; }
+.pill--solid:hover .cta-go, .btn:hover .cta-go {
+  transform: translateX(2px);
+  background: color-mix(in srgb, var(--accent-ink) 34%, transparent);
+}
+/* color-mix is recent; this keeps the disc visible on older browsers. */
+@supports not (background: color-mix(in srgb, red 20%, transparent)) {
+  .cta-go { background: rgba(255, 255, 255, .22); }
+}
 .compose-hint { font-size: .78rem; color: var(--text-dim); }
 
 /* ── Footer ───────────────────────────────────────────────────────────── */
@@ -599,6 +642,11 @@ body.a11y-contrast .ink {
 body.a11y-contrast::after { display: none; }
 body.a11y-contrast a { text-decoration: underline; }
 body.a11y-contrast .tag { background: var(--text); color: var(--bg); }
+/* At high contrast --bg-card collapses to the page colour and soft shadows
+   carry no meaning, so containers need a real border to stay containers. */
+body.a11y-contrast .tile { box-shadow: none; border: 1px solid var(--border); }
+body.a11y-contrast .tile--draft { border-style: dashed; }
+body.a11y-contrast .cta-go { background: none; border: 1px solid currentColor; }
 
 body.a11y-links a { background: #fff3a3 !important; color: #000 !important; text-decoration: underline !important; outline: 1px solid #c79a12; }
 
@@ -611,7 +659,7 @@ body.a11y-cursor, body.a11y-cursor * {
 body.a11y-motion *, body.a11y-motion *::before, body.a11y-motion *::after {
   animation: none !important; transition: none !important; scroll-behavior: auto !important;
 }
-body.a11y-motion .reveal { opacity: 1 !important; transform: none !important; }
+body.a11y-motion .reveal { opacity: 1 !important; transform: none !important; filter: none !important; }
 body.a11y-motion .parallax { transform: none !important; }
 
 @media (prefers-reduced-motion: reduce) {
@@ -619,14 +667,17 @@ body.a11y-motion .parallax { transform: none !important; }
     animation-duration: .001ms !important; animation-iteration-count: 1 !important;
     transition-duration: .001ms !important; scroll-behavior: auto !important;
   }
-  .reveal { opacity: 1 !important; transform: none !important; }
+  .reveal { opacity: 1 !important; transform: none !important; filter: none !important; }
   .marquee-track { animation: none !important; }
 }
 
 /* ── Scroll reveal ────────────────────────────────────────────────────────
    Scoped to html.js so a failed script leaves content visible, not blank. */
-html.js .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
-html.js .reveal.is-visible { opacity: 1; transform: none; }
+html.js .reveal {
+  opacity: 0; transform: translateY(18px); filter: blur(6px);
+  transition: opacity .8s var(--ease-out), transform .8s var(--ease-out), filter .8s var(--ease-out);
+}
+html.js .reveal.is-visible { opacity: 1; transform: none; filter: blur(0); }
 
 /* ── Print ────────────────────────────────────────────────────────────── */
 @media print {
@@ -653,11 +704,26 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
   display: flex; flex-direction: column;
   padding: 1.15rem 1.25rem 1.2rem;
   background: var(--bg-card);
-  border-radius: 14px;
+  border-radius: var(--r-lg);
   color: inherit; text-decoration: none;
-  transition: transform .35s ease, box-shadow .35s ease;
+  /* Three layers rather than a flat fill: a highlight along the top edge, a
+     hairline round the whole tile, and a wide tinted diffusion underneath.
+     Together they read as a panel sitting in a tray, with no extra markup. */
+  box-shadow:
+    inset 0 1px 0 var(--highlight),
+    0 0 0 1px var(--hairline),
+    0 2px 4px -3px var(--shadow-tint),
+    0 16px 32px -26px var(--shadow-tint);
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease);
 }
-a.tile:hover { transform: translateY(-3px); box-shadow: var(--shadow); color: inherit; }
+a.tile:hover {
+  transform: translateY(-3px); color: inherit;
+  box-shadow:
+    inset 0 1px 0 var(--highlight),
+    0 0 0 1px var(--hairline),
+    0 4px 8px -4px var(--shadow-tint),
+    0 24px 48px -24px var(--shadow-tint);
+}
 /* A real pressed state, so a tap feels like it landed. */
 a.tile:active { transform: translateY(0); }
 .tile-kicker {
@@ -676,13 +742,20 @@ a.tile:active { transform: translateY(0); }
   letter-spacing: .13em; text-transform: uppercase; color: var(--accent);
 }
 /* Inner radius tighter than the container it sits in. */
-.tile-img { width: 100%; aspect-ratio: 16 / 11; object-fit: cover; border-radius: 8px; margin-bottom: .9rem; }
+.tile-img { width: 100%; aspect-ratio: 16 / 11; object-fit: cover; border-radius: var(--r-md); margin-bottom: .9rem; }
 /* Screenshots whose text starts hard against the left edge; a centred crop
    would slice the first word of every line. */
 .tile-img--left { object-position: left center; }
 /* Other work carries images and sits directly above Off the clock, which is
    text-only. The wider track keeps the two rows from reading as a repeat. */
 .tile-grid--wide { grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); }
+/* Four items in a three-up grid strands one on a row by itself, so the
+   services grid runs two across and squares off. */
+.tile-grid--duo { grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr)); }
+/* Unwritten boxes. Deliberately reads as a draft so nobody mistakes the
+   placeholder wording for finished copy. */
+.tile--draft { background: none; border: 1px dashed var(--border); box-shadow: none; }
+.tile--draft p:last-child { color: var(--text-dim); font-style: italic; }
 
 /* ── Audit fixes ──────────────────────────────────────────────────────────
    Pressed feedback was missing everywhere: things lifted on hover but gave
