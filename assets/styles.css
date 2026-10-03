@@ -197,6 +197,19 @@ a:hover { color: var(--accent); }
 .nav-links a:hover { color: var(--accent); }
 @media (max-width: 780px) { .nav-links a { display: none; } }
 
+/* The primary action keeps the pill treatment inside the nav. It needs the
+   extra specificity because `.nav-links a` would otherwise win on colour,
+   and it has to survive the rule above that hides the text links on a phone. */
+.nav-links a.nav-cta {
+  color: var(--accent-ink);
+  padding: .4rem .45rem .4rem .8rem;
+  letter-spacing: .1em;
+}
+.nav-links a.nav-cta:hover { color: var(--accent-ink); }
+@media (max-width: 780px) { .nav-links a.nav-cta { display: inline-flex; } }
+/* Below this the logo and the pill start fighting for the same row. */
+@media (max-width: 430px) { .nav-links a.nav-cta { display: none; } }
+
 .icon-btn {
   display: grid; place-items: center; width: 36px; height: 36px; flex: 0 0 auto;
   border: 1px solid var(--border); border-radius: 50%;
@@ -204,7 +217,7 @@ a:hover { color: var(--accent); }
   transition: border-color .2s var(--ease), color .2s var(--ease);
 }
 .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
-.icon-btn svg { width: 17px; height: 17px; }
+.icon-btn svg { width: 16px; height: 16px; }
 html[data-theme="dark"] .icon-sun, html[data-theme="light"] .icon-moon { display: none; }
 
 /* ── Hero ─────────────────────────────────────────────────────────────── */
@@ -238,7 +251,16 @@ html[data-theme="dark"] .icon-sun, html[data-theme="light"] .icon-moon { display
 
 .hero-body { display: grid; gap: .85rem; }
 .hero-body p { max-width: 48ch; color: var(--text-muted); }
-.hero-body p:first-child { color: var(--text); font-size: 1.1rem; }
+/* The opening line carries the whole introduction now, so it is set in the
+   display face with the verbs picked out, the way she drew it. */
+.hero-hook {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.6vw, 1.85rem);
+  line-height: 1.28; letter-spacing: -.015em;
+  color: var(--text) !important; max-width: 22ch;
+  text-wrap: balance;
+}
+.hero-hook em { font-style: italic; color: var(--accent); font-variation-settings: 'SOFT' 60, 'WONK' 1; }
 
 /* Arched portrait on a blush ground, framed like the editorial references. */
 .portrait-frame { position: relative; justify-self: end; width: min(100%, 330px); }
@@ -305,8 +327,58 @@ html[data-theme="dark"] .icon-sun, html[data-theme="light"] .icon-moon { display
 .pill--solid { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 .pill--solid:hover { color: var(--accent-ink); filter: brightness(1.1); }
 
+/* Label with a rule running out to the right, like a legend. */
+.strip-label {
+  display: flex; align-items: center; gap: 1rem;
+  font-family: var(--font-wide); font-size: .63rem; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--text-dim);
+  margin-bottom: clamp(.9rem, 2vw, 1.3rem);
+}
+.strip-label::after { content: ''; flex: 1 1 auto; height: 1px; background: var(--border); }
+
+/* Capsules are taxonomy, not navigation. They carry no border and never
+   respond to hover, which is what keeps them from reading as buttons next
+   to the outlined nav pills and the solid call to action. */
+.spaces { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; }
+.space {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .5rem .95rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  font-family: var(--font-wide); font-size: .67rem; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--text);
+}
+.space svg { color: var(--accent); flex: 0 0 auto; }
+
+.doing { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); list-style: none; }
+.doing-item { padding-inline: clamp(.9rem, 2.2vw, 1.75rem); border-left: 1px solid var(--border); }
+.doing-item:first-child { padding-left: 0; border-left: 0; }
+.doing-icon { color: var(--accent); margin-bottom: .55rem; }
+.doing-item h3 {
+  font-family: var(--font-wide); font-size: .71rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; margin-bottom: .35rem;
+}
+.doing-item p { color: var(--text-muted); font-size: .87rem; }
+
+@media (max-width: 880px) {
+  .doing { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: clamp(1.4rem, 3vw, 2rem); }
+  .doing-item:nth-child(odd) { padding-left: 0; border-left: 0; }
+}
+@media (max-width: 540px) {
+  .doing { grid-template-columns: 1fr; }
+  .doing-item { padding-inline: 0; border-left: 0; }
+  /* Five capsules stacked would be a very tall column, so they scroll. */
+  .spaces { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-bottom: .3rem; }
+  .spaces::-webkit-scrollbar { display: none; }
+  .space { flex: 0 0 auto; }
+}
+
 /* ── Sections ─────────────────────────────────────────────────────────── */
 .section { position: relative; padding: clamp(2.75rem, 7vw, 5.5rem) 0; scroll-margin-top: 64px; }
+/* The two intro strips read as one block with the hero, so they run on a
+   tighter rhythm. This has to sit after .section to win on source order. */
+.section--tight { padding: clamp(1.1rem, 2.6vw, 1.9rem) 0; }
 .section.ink { overflow: hidden; }
 .section > .wrap { position: relative; z-index: 1; }
 .ink { background: var(--bg); color: var(--text); }
@@ -447,7 +519,7 @@ figcaption {
 .link-card:hover { border-color: var(--accent); color: inherit; }
 .link-card svg, .link-card-text { transition: transform .25s var(--ease); }
 .link-card:hover svg, .link-card:hover .link-card-text { transform: translateX(.4rem); }
-.link-card svg { width: 18px; height: 18px; flex: 0 0 auto; color: var(--accent); }
+.link-card svg { width: 16px; height: 16px; flex: 0 0 auto; color: var(--accent); }
 .link-card-text { display: grid; gap: .08rem; min-width: 0; }
 .link-card-text strong { font-size: .92rem; font-weight: 600; }
 .link-card-text span { font-size: .76rem; color: var(--text-dim); overflow-wrap: anywhere; }
@@ -586,7 +658,7 @@ figcaption {
   box-shadow: var(--shadow); cursor: pointer; display: grid; place-items: center;
 }
 .a11y-fab:hover { border-color: var(--accent); color: var(--accent); }
-.a11y-fab svg { width: 21px; height: 21px; }
+.a11y-fab svg { width: 24px; height: 24px; }
 
 .a11y-panel {
   position: fixed; right: clamp(.85rem, 3vw, 1.5rem); bottom: calc(clamp(.85rem, 3vw, 1.5rem) + 56px);
@@ -647,6 +719,7 @@ body.a11y-contrast .tag { background: var(--text); color: var(--bg); }
 /* At high contrast --bg-card collapses to the page colour and soft shadows
    carry no meaning, so containers need a real border to stay containers. */
 body.a11y-contrast .tile { box-shadow: none; border: 1px solid var(--border); }
+body.a11y-contrast .space { border: 1px solid var(--border); }
 body.a11y-contrast .tile--draft { border-style: dashed; }
 body.a11y-contrast .cta-go { background: none; border: 1px solid currentColor; }
 
