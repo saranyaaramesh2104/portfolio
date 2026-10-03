@@ -42,13 +42,13 @@ Your site updates itself about a minute later.
 The file has comment blocks that look like this to help you find your way:
 
 ```html
-<!-- ── Writing & Marketing ─────────────────────────────── -->
+<!-- ── Other work ───────────────────────────────────────── -->
 ```
 
 Two rules and you cannot really break anything:
 
 - Only change words that appear *between* `>` and `<`. In
-  `<h3>Landing pages</h3>` you can safely rewrite `Landing pages`.
+  `<h3>Mental health app</h3>` you can safely rewrite `Mental health app`.
 - Leave anything inside angle brackets alone.
 
 If something does go wrong, GitHub keeps every previous version. Click the
@@ -68,7 +68,7 @@ extra line and the layout looks lopsided:
 
 | Slot | Keep it under | Example |
 |---|---|---|
-| Big heading, first line | 14 characters | `Selected`, `Community` |
+| Big heading, first line | 14 characters | `Selected`, `Off the` |
 | Big heading, second line | 9 characters | `Work`, `& Social` |
 | The big numbers in the stats strip | 7 characters | `3,000+`, `64.7K` |
 
@@ -83,7 +83,7 @@ line is not a disaster. But they read best short:
 | Slot | One line if under |
 |---|---|
 | Work card title (`Morphic`, `Headout`) | 28 characters |
-| Section sub-heading (`Landing pages`) | 30 characters |
+| Box heading (`Anya’s Newsletter`) | 30 characters |
 | Heading inside a case study | 28 characters |
 | Link title (`College newsletter`) | 34 characters |
 | Link description (`2024 edition — PDF`) | 44 characters |
@@ -103,16 +103,14 @@ Two or three short paragraphs always beat one long one. The text column is
 capped at a comfortable reading width on purpose, so it will never stretch into
 those very long lines that are hard to follow.
 
-**One thing to know.** On a phone, `& Marketing` and `Case Study` are each a
-hair too long and drop onto a second line. It is not broken, just slightly less
-tidy than the others. If it bothers you, shortening `& Marketing` to `& Brand`
-fixes it.
+**One thing to know.** On a phone, `Case Study` is a hair too long and drops
+onto a second line on each case study page. It is not broken, just slightly less
+tidy than the others.
 
 ### Adding a box
 
-Three places on the site use the same box: **More things I've made**, **Off the
-clock**, and **What I can do for you**. Learn it once and all three work the
-same way.
+Three places on the site use the same box: **Other work**, **Off the clock**,
+and **What I can do for you**. Learn it once and all three work the same way.
 
 To add one, copy a whole block from `<a class="tile"` down to `</a>` and change
 the words:
@@ -133,10 +131,9 @@ clickable but goes nowhere is worse than one that doesn't.
 The boxes arrange themselves. Two, three, five — they will lay out sensibly on
 every screen, so you never need to touch the layout.
 
-**Two sections are switched off right now.** *More things I've made* and *What I
-can do for you* are on the site but invisible, so nobody sees empty boxes while
-you are still writing them. When a section is ready, find its line near the top
-of the block and delete the single word `hidden`:
+**One section is switched off right now.** *What I can do for you* is on the
+site but invisible, so nobody sees empty boxes while you are still writing it.
+When it is ready, find its line and delete the single word `hidden`:
 
 ```html
 <section class="section section--hair reveal" id="services" hidden>
