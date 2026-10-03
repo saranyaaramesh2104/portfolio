@@ -9,6 +9,11 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* A component that sets its own display (.block is a grid, .case is a block)
+   would otherwise beat the browser default for [hidden], leaving sections
+   that are meant to be switched off still on the page. */
+[hidden] { display: none !important; }
+
 :root {
   --fs-base: 17px;
   --font-body: 'Inter', system-ui, -apple-system, sans-serif;
@@ -263,7 +268,10 @@ html[data-theme="dark"] .icon-sun, html[data-theme="light"] .icon-moon { display
 .decor--aster { width: clamp(52px, 7vw, 96px); top: 11%; right: 30%; opacity: .9; }
 @media (max-width: 860px) { .decor--aster { display: none; } }
 
-.hero-cta { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.6rem; }
+.hero-cta { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1.6rem; }
+/* Five links have to share one line on a laptop, so these run tighter than a
+   default pill. They still wrap onto a second row on narrow screens. */
+.hero-cta .pill { padding: .5rem .72rem; letter-spacing: .07em; }
 
 .pill {
   display: inline-flex; align-items: center; gap: .4rem;
@@ -418,6 +426,13 @@ figure { background: none; border: 0; }
 .shot--fit { aspect-ratio: 16 / 10; object-fit: contain; object-position: top center; background: none; }
 .shot--fit-tall { aspect-ratio: 3 / 4; object-fit: contain; object-position: top center; background: none; }
 
+/* Screenshots of very different shapes sat at different heights, so the row
+   looked ragged. A shared surface gives them one silhouette and lines the
+   captions up, without cropping anything out of the picture. */
+.shots--slides figure { background: var(--bg-card); border-radius: 10px; padding: .7rem .7rem .15rem; }
+.shots--slides .shot { object-position: center; border-radius: 4px; }
+.shots--slides figcaption { padding: .55rem .15rem .25rem; }
+
 figcaption {
   padding: .6rem 0 0;
   font-family: var(--font-wide); font-size: .66rem; font-weight: 600;
@@ -523,6 +538,21 @@ figcaption {
 }
 .case-section p { max-width: var(--measure); color: var(--text-muted); }
 .case-section p + p { margin-top: .8rem; }
+
+/* Numbered points inside a case study — "01 | HOW I FOUND THE RIGHT CREATORS"
+   and the question-and-answer blocks. Without this they ran together, because
+   the heading and the paragraph had nothing separating one point from the next. */
+.creator-partnerships { margin-top: .25rem; }
+.creator-point + .creator-point,
+.brief-point + .brief-point,
+.creator-partnerships + .creator-point,
+.brief-point + .creator-point { margin-top: clamp(1.6rem, 3.5vw, 2.4rem); }
+.creator-point h3, .brief-point h3 {
+  font-family: var(--font-wide); font-size: .8rem; font-weight: 700;
+  letter-spacing: .11em; text-transform: uppercase;
+  color: var(--text); margin-bottom: .55rem;
+}
+.creator-point p, .brief-point p { max-width: var(--measure); color: var(--text-muted); }
 
 /* Prompts for the case studies Saranyaa has not written yet. Deleting the
    .todo block is all that is needed to publish a section. */
@@ -650,3 +680,68 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
   .ink { background: #fff !important; color: #000 !important; }
   .section { page-break-inside: avoid; }
 }
+
+
+/* ── Tiles ────────────────────────────────────────────────────────────────
+   One box, reused three ways: work that is not a full case study, the off
+   the clock items, and the services grid. Saranyaa adds an item by copying
+   one <a class="tile"> or <article class="tile"> block.
+   The grid is auto-fit rather than a fixed three columns, so a row of two,
+   four or five never leaves an orphan sitting alone. */
+.tile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(265px, 100%), 1fr));
+  gap: var(--gap);
+  margin-top: clamp(1.25rem, 3vw, 2rem);
+}
+.tile {
+  display: flex; flex-direction: column;
+  padding: 1.15rem 1.25rem 1.2rem;
+  background: var(--bg-card);
+  border-radius: 14px;
+  color: inherit; text-decoration: none;
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+a.tile:hover { transform: translateY(-3px); box-shadow: var(--shadow); color: inherit; }
+/* A real pressed state, so a tap feels like it landed. */
+a.tile:active { transform: translateY(0); }
+.tile-kicker {
+  font-family: var(--font-wide); font-size: .6rem; font-weight: 700;
+  letter-spacing: .15em; text-transform: uppercase; color: var(--accent);
+}
+.tile h3 {
+  font-family: var(--font-display); font-size: 1.22rem; font-weight: 500;
+  letter-spacing: -.01em; line-height: 1.15; margin-top: .4rem; text-wrap: balance;
+}
+.tile p { margin-top: .5rem; color: var(--text-muted); font-size: .92rem; }
+/* Pushes every call to action onto the same baseline across the row. */
+.tile-go {
+  margin-top: auto; padding-top: 1rem;
+  font-family: var(--font-wide); font-size: .63rem; font-weight: 700;
+  letter-spacing: .13em; text-transform: uppercase; color: var(--accent);
+}
+/* Inner radius tighter than the container it sits in. */
+.tile-img { width: 100%; aspect-ratio: 16 / 11; object-fit: cover; border-radius: 8px; margin-bottom: .9rem; }
+.tile--empty { border: 1px dashed var(--border); background: none; }
+
+/* ── Audit fixes ──────────────────────────────────────────────────────────
+   Pressed feedback was missing everywhere: things lifted on hover but gave
+   nothing back on click. */
+.pill:active, .btn:active, .work-card:active, .link-card:active { transform: translateY(1px); }
+
+/* The nav gave no clue which section you were looking at. */
+.nav-links a[aria-current="true"] { color: var(--accent); }
+
+/* Figures read as data, so they should not jiggle as the digits change. */
+.stat b, .metric b, .feature-metrics div b { font-variant-numeric: tabular-nums; }
+
+/* Stops a single word dangling on its own final line. */
+p, .tile p, .block-note, .section-intro { text-wrap: pretty; }
+.feature-body h3, .work-card-body h3, .creator-point h3, .brief-point h3 { text-wrap: balance; }
+
+/* Was an inline style attribute on the markup. */
+.block--gap { margin-top: clamp(1.75rem, 4vw, 2.75rem); }
+
+/* Inline validation message for the composer. */
+.field-error { margin-top: .4rem; font-size: .82rem; color: var(--accent); }
+.compose textarea[aria-invalid="true"], .compose input[aria-invalid="true"] { border-bottom-color: var(--accent); }

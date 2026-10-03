@@ -307,8 +307,22 @@
   if (composer) {
     composer.addEventListener('submit', function (event) {
       event.preventDefault();
-      var name = (document.getElementById('cName').value || '').trim();
-      var note = (document.getElementById('cNote').value || '').trim();
+      var nameField = document.getElementById('cName');
+      var noteField = document.getElementById('cNote');
+      var noteError = document.getElementById('cNoteError');
+      var name = (nameField.value || '').trim();
+      var note = (noteField.value || '').trim();
+
+      // Without this an empty form opened a blank email, which looks broken
+      // to the sender and tells Saranyaa nothing.
+      if (!note) {
+        if (noteError) noteError.hidden = false;
+        noteField.setAttribute('aria-invalid', 'true');
+        noteField.focus();
+        return;
+      }
+      if (noteError) noteError.hidden = true;
+      noteField.removeAttribute('aria-invalid');
       var subject = name ? 'Portfolio enquiry from ' + name : 'Portfolio enquiry';
       var lines = note ? [note] : [];
       if (name) lines.push('', '— ' + name);
@@ -322,4 +336,25 @@
   /* ── Footer year ───────────────────────────────────────────────────── */
   var year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
+
+  /* ── Active section in the nav ───────────────────────────────────────── */
+  // The nav previously gave no clue where you were on the page.
+  var navLinks = [].slice.call(document.querySelectorAll('.nav-links a[href^="#"]'));
+  var spied = navLinks
+    .map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); })
+    .filter(Boolean);
+
+  if (spied.length && 'IntersectionObserver' in window) {
+    var mark = function (id) {
+      navLinks.forEach(function (a) {
+        if (a.getAttribute('href') === '#' + id) a.setAttribute('aria-current', 'true');
+        else a.removeAttribute('aria-current');
+      });
+    };
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) mark(e.target.id); });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    spied.forEach(function (s) { spy.observe(s); });
+  }
+
 })();
