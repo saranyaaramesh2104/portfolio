@@ -174,6 +174,33 @@
     card.addEventListener('pointerleave', function () { card.style.transform = ''; });
   });
 
+  /* ── Cursor glow ───────────────────────────────────────────────────── */
+  // One listener, rAF-throttled like the parallax above, moving a fixed layer
+  // with translate3d so the work stays on the compositor.
+  var glow = document.querySelector('.cursor-glow');
+  var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+  if (glow && finePointer.matches) {
+    var gx = 0, gy = 0, glowQueued = false;
+
+    function paintGlow() {
+      glowQueued = false;
+      glow.style.transform = 'translate3d(' + gx + 'px,' + gy + 'px,0)';
+    }
+
+    document.addEventListener('pointermove', function (event) {
+      if (event.pointerType === 'touch' || motionOff()) return;
+      gx = event.clientX; gy = event.clientY;
+      if (!glow.classList.contains('is-on')) glow.classList.add('is-on');
+      if (glowQueued) return;
+      glowQueued = true;
+      requestAnimationFrame(paintGlow);
+    }, { passive: true });
+
+    // Fade out when the pointer leaves the window rather than leaving a
+    // stranded light in the last known position.
+    document.addEventListener('pointerleave', function () { glow.classList.remove('is-on'); });
+  }
+
   if (prefersReduced.addEventListener) {
     prefersReduced.addEventListener('change', function () {
       if (motionOff()) clearMotion();

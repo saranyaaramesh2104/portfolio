@@ -61,6 +61,7 @@ html[data-theme="dark"] .ink {
   --hairline: rgba(36, 21, 15, .07);
   --highlight: rgba(255, 255, 255, .75);
   --shadow-tint: rgba(36, 21, 15, .17);
+  --glow: rgba(195, 40, 36, .07);
   --grain-blend: multiply;
   --grain-opacity: .34;
 }
@@ -81,6 +82,7 @@ html[data-theme="light"] .ink {
   --hairline: rgba(255, 255, 255, .055);
   --highlight: rgba(255, 255, 255, .05);
   --shadow-tint: rgba(0, 0, 0, .7);
+  --glow: rgba(240, 101, 95, .10);
   --grain-blend: screen;
   --grain-opacity: .12;
 }
@@ -179,13 +181,29 @@ a:hover { color: var(--accent); }
 }
 .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 60px; }
 
+/* The wordmark echoes the hero's two-typeface split at nav scale, and the
+   mark is her own ten-lobed aster rather than a typed asterisk. */
 .nav-logo {
-  font-family: var(--font-wide);
-  font-weight: 700; font-size: .8rem;
-  letter-spacing: .16em; text-transform: uppercase;
-  text-decoration: none;
+  display: inline-flex; align-items: baseline; gap: .34em;
+  text-decoration: none; color: var(--text);
 }
-.nav-logo span { color: var(--accent); }
+.nav-logo-first {
+  font-family: var(--font-display); font-style: italic; font-weight: 500;
+  font-size: 1.12rem; letter-spacing: -.015em;
+  font-variation-settings: 'SOFT' 60, 'WONK' 1;
+}
+.nav-logo-last {
+  font-family: var(--font-wide);
+  font-weight: 700; font-size: .72rem;
+  letter-spacing: .16em; text-transform: uppercase;
+}
+.nav-mark {
+  align-self: center; flex: 0 0 auto;
+  color: var(--accent);
+  transition: transform 1.1s var(--ease);
+}
+.nav-logo:hover { color: var(--text); }
+.nav-logo:hover .nav-mark { transform: rotate(144deg); }
 
 .nav-links { display: flex; align-items: center; gap: 1.5rem; }
 .nav-links a {
@@ -206,6 +224,10 @@ a:hover { color: var(--accent); }
   letter-spacing: .1em;
 }
 .nav-links a.nav-cta:hover { color: var(--accent-ink); }
+/* The shared .cta-go pulls itself outward by -.5em to sit flush inside the
+   roomier hero pill. In the tighter nav pill that left about 1.5px, so the
+   arrow nearly touched the edge. Less pull here only. */
+.nav-links a.nav-cta .cta-go { margin-right: -.15em; }
 @media (max-width: 780px) { .nav-links a.nav-cta { display: inline-flex; } }
 /* Below this the logo and the pill start fighting for the same row. */
 @media (max-width: 430px) { .nav-links a.nav-cta { display: none; } }
@@ -374,6 +396,27 @@ html[data-theme="dark"] .icon-sun, html[data-theme="light"] .icon-moon { display
   .space { flex: 0 0 auto; }
 }
 
+/* ── Cursor glow ──────────────────────────────────────────────────────────
+   A soft light under the pointer. It sits at z-index 1, below the grain, so
+   the grain textures it. Only the layer transform changes each frame, so the
+   gradient itself never repaints. Desktop pointers only: a touch device has
+   no cursor, which is also what keeps the cost off phones entirely. */
+.cursor-glow { display: none; }
+@media (hover: hover) and (pointer: fine) {
+  .cursor-glow {
+    display: block;
+    position: fixed; top: 0; left: 0;
+    width: 520px; height: 520px; margin: -260px 0 0 -260px;
+    z-index: 1; pointer-events: none;
+    will-change: transform;
+    opacity: 0; transition: opacity .45s var(--ease);
+    background: radial-gradient(circle closest-side, var(--glow), transparent);
+  }
+  .cursor-glow.is-on { opacity: 1; }
+}
+body.a11y-motion .cursor-glow { display: none !important; }
+@media (prefers-reduced-motion: reduce) { .cursor-glow { display: none !important; } }
+
 /* ── Sections ─────────────────────────────────────────────────────────── */
 .section { position: relative; padding: clamp(2.75rem, 7vw, 5.5rem) 0; scroll-margin-top: 64px; }
 /* The two intro strips read as one block with the hero, so they run on a
@@ -409,8 +452,9 @@ html[data-theme="dark"] .icon-sun, html[data-theme="light"] .icon-moon { display
 @keyframes marquee { to { transform: translateX(-100%); } }
 
 /* ── Stat band ────────────────────────────────────────────────────────── */
-.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap); }
-@media (max-width: 860px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.stats { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--gap); }
+@media (max-width: 1150px) { .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: clamp(1.4rem, 3vw, 2rem); } }
+@media (max-width: 720px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 .stat { border-top: 2px solid var(--accent); padding-top: .85rem; }
 .stat b {
@@ -498,6 +542,18 @@ figure { background: none; border: 0; }
 .shots--slides figure { background: var(--bg-card); border-radius: var(--r-lg); padding: .7rem .7rem .15rem; }
 .shots--slides .shot { object-position: center; border-radius: var(--r-sm); }
 .shots--slides figcaption { padding: .55rem .15rem .25rem; }
+
+/* Hovering one launch tile lifts it while the others fall back, so the one
+   being read is clearly the front-most. Hover-capable pointers only, so a
+   phone never gets a stuck blurred state from a tap. */
+@media (hover: hover) and (pointer: fine) {
+  .shots--slides figure {
+    position: relative;
+    transition: transform .4s var(--ease), filter .4s var(--ease), opacity .4s var(--ease);
+  }
+  .shots--slides figure:hover { transform: translateY(-5px) scale(1.02); z-index: 1; }
+  .shots--slides:hover figure:not(:hover) { filter: blur(2px); opacity: .55; }
+}
 
 figcaption {
   padding: .6rem 0 0;
@@ -735,6 +791,8 @@ body.a11y-motion *, body.a11y-motion *::before, body.a11y-motion *::after {
   animation: none !important; transition: none !important; scroll-behavior: auto !important;
 }
 body.a11y-motion .reveal { opacity: 1 !important; transform: none !important; filter: none !important; }
+body.a11y-motion .shots--slides figure:hover { transform: none !important; }
+body.a11y-motion .shots--slides:hover figure:not(:hover) { filter: none !important; opacity: 1 !important; }
 body.a11y-motion .parallax { transform: none !important; }
 
 @media (prefers-reduced-motion: reduce) {
@@ -743,6 +801,8 @@ body.a11y-motion .parallax { transform: none !important; }
     transition-duration: .001ms !important; scroll-behavior: auto !important;
   }
   .reveal { opacity: 1 !important; transform: none !important; filter: none !important; }
+  .shots--slides figure:hover { transform: none !important; }
+  .shots--slides:hover figure:not(:hover) { filter: none !important; opacity: 1 !important; }
   .marquee-track { animation: none !important; }
 }
 
