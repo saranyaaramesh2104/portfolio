@@ -108,6 +108,48 @@ hair too long and drop onto a second line. It is not broken, just slightly less
 tidy than the others. If it bothers you, shortening `& Marketing` to `& Brand`
 fixes it.
 
+### Adding a box
+
+Three places on the site use the same box: **More things I've made**, **Off the
+clock**, and **What I can do for you**. Learn it once and all three work the
+same way.
+
+To add one, copy a whole block from `<a class="tile"` down to `</a>` and change
+the words:
+
+```html
+<a class="tile" href="https://wherever-it-lives.com" target="_blank" rel="noopener">
+  <p class="tile-kicker">Category</p>
+  <h3>Name of the thing</h3>
+  <p>One or two sentences on what it was and what you did.</p>
+  <span class="tile-go">Open →</span>
+</a>
+```
+
+If there is nowhere to send people, use `<article class="tile">` and `</article>`
+instead of `<a ...>` and `</a>`, and delete the `tile-go` line. A box that looks
+clickable but goes nowhere is worse than one that doesn't.
+
+The boxes arrange themselves. Two, three, five — they will lay out sensibly on
+every screen, so you never need to touch the layout.
+
+**Two sections are switched off right now.** *More things I've made* and *What I
+can do for you* are on the site but invisible, so nobody sees empty boxes while
+you are still writing them. When a section is ready, find its line near the top
+of the block and delete the single word `hidden`:
+
+```html
+<section class="section section--hair reveal" id="services" hidden>
+```
+
+becomes
+
+```html
+<section class="section section--hair reveal" id="services">
+```
+
+That one word is the whole switch.
+
 ### Adding a new image
 
 1. Open the `assets` folder in your repository.
