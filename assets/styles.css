@@ -490,7 +490,9 @@ figcaption {
   background: color-mix(in srgb, var(--accent-ink) 22%, transparent);
   transition: transform .3s var(--ease), background .3s var(--ease);
 }
-.cta-go svg { width: .66em; height: .66em; }
+/* 12px against a viewBox of 24 halves the stroke, so this arrow lands on the
+   same 1.5px optical weight as every other icon on the page. */
+.cta-go svg { width: 12px; height: 12px; }
 .pill--solid:hover .cta-go, .btn:hover .cta-go {
   transform: translateX(2px);
   background: color-mix(in srgb, var(--accent-ink) 34%, transparent);
