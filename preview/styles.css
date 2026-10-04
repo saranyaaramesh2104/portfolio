@@ -847,14 +847,26 @@ body.a11y-motion [data-stagger] > * {
    with JavaScript off, and nothing is reconstructed at runtime. Transform and
    opacity only, so the display type never reflows. */
 @keyframes name-in {
-  from { opacity: 0; transform: translateY(.16em); }
+  from { opacity: 0; transform: translateY(.3em); }
   to   { opacity: 1; transform: none; }
 }
 @media (prefers-reduced-motion: no-preference) {
+  /* Hold the name until the real typefaces have landed. The fonts load with
+     display=swap, so without this the entrance starts on fallback text and is
+     77% over by the time Fraunces arrives -- measured. The swap itself then
+     carried no motion at all, which is why it read as barely happening.
+     Script always adds .fonts-ready, on load or on a timeout, so the hold
+     cannot strand the name. */
   html.js .hero-name .n1,
-  html.js .hero-name .n2 { animation: name-in .7s var(--ease-out) both; }
-  html.js .hero-name .n2 { animation-delay: .13s; }
+  html.js .hero-name .n2 { opacity: 0; }
+  html.js.fonts-ready .hero-name .n1,
+  html.js.fonts-ready .hero-name .n2 { animation: name-in 1.1s var(--ease-out) both; }
+  html.js.fonts-ready .hero-name .n2 { animation-delay: .3s; }
 }
+/* The motion toggle kills animations, so the hold state above needs an
+   explicit release or the name would simply never appear. */
+body.a11y-motion .hero-name .n1,
+body.a11y-motion .hero-name .n2 { opacity: 1 !important; animation: none !important; }
 
 /* The mark tracks how far down the page you are. Driven by the independent
    `rotate` property rather than `transform`, so it composes with the hover
