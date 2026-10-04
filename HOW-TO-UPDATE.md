@@ -249,10 +249,25 @@ swap straight in.
 | `assets/styles.css` | Colours, fonts, spacing |
 | `assets/app.js` | Dark mode, accessibility menu, image zoom, page switching, movement |
 | `assets/shape-*.svg` | The circle, asterisk and rays, redrawn from your own artwork |
+| `assets/og-card.jpg` | The picture that shows up when someone shares your link. See the note below |
 | `assets/*.jpg`, `*.png`, `*.pdf` | Your images and documents, copied out of Notion |
+| `404.html` | What someone sees if they mistype a web address |
+| `preview/` | A copy used to show you changes before they go live. Hidden from search engines. Ignore it |
 | `content.json` | A record of what was pulled from Notion. Not used by the site |
 | `tools/export_notion.py` | The script that did the copying. Already run; kept for reference |
+| `README.md` | A short note for anyone who finds the code |
 | `.nojekyll` | Tells GitHub to publish the files exactly as they are |
+
+### About the sharing picture
+
+When you paste your link into WhatsApp, LinkedIn or a message, the preview card
+that appears comes from `assets/og-card.jpg`. It is a **picture**, not live text,
+so it does not update itself — it has your name and the "I write things, make
+things" line baked in.
+
+That only matters if you change your tagline and want the card to match. If you
+do, tell me and I will regenerate it. Everything else about the site updates on
+its own, so this is the one exception worth remembering.
 
 ## A few things the site does that are easy to miss
 
@@ -268,10 +283,23 @@ swap straight in.
 - **The shapes are yours.** The quartered circle, the ten-petal asterisk and the
   radiating lines are redrawn from your Decoding Draupadi posts, in the exact
   reds and creams sampled out of those files. So is the site's whole palette.
+- **So is the logo.** The mark next to your name in the top left is your own
+  ten-petal asterisk, not a typed character, and it turns slowly when someone
+  hovers over it. "Saranyaa" is set in the serif and "RAMESH" in the wide face,
+  which is the same split as the big hero name, just small.
 - **Things move a little.** The word strip scrolls, the shapes drift as you
-  scroll, and the work cards lean toward your cursor. All of it switches off if
-  a visitor has "reduce motion" set on their phone or laptop, or ticks Reduce
-  motion in the accessibility menu.
+  scroll, and the big feature card leans toward your cursor. Beyond that:
+  sections fade up as you reach them with their contents arriving one after
+  another rather than all at once, a soft light follows the cursor on desktop,
+  hovering one launch tile pushes the others back slightly, and your name
+  arrives in two beats when the page loads. All of it switches off if a visitor
+  has "reduce motion" set on their phone or laptop, or ticks Reduce motion in
+  the accessibility menu.
+- **Your name waits for the fonts before it animates.** Worth knowing because
+  it looks like a bug if you do not expect it: on a slow connection the name
+  appears a moment after everything else. That is deliberate. The entrance used
+  to play while the browser was still loading the proper typefaces, so most of
+  it was spent animating a substitute font nobody ends up seeing.
 - **The contact form** opens the visitor's own email app with the message
   already written. Nothing is sent to a server, so there is nothing to maintain
   and no inbox to check but your own.

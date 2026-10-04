@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# The preview folder is a working copy used to review changes before they go
+# live. Its pages already carry a noindex tag and a canonical link pointing at
+# the real site, but keeping crawlers out of it entirely avoids any chance of a
+# duplicate of the portfolio competing with the portfolio itself.
+Disallow: /portfolio/preview/
+
+Sitemap: https://saranyaaramesh2104.github.io/portfolio/sitemap.xml

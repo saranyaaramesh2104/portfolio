@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Only one URL, deliberately. The case studies live behind hash routes
+  (#/morphic and so on), and search engines do not treat a fragment as a
+  separate page, so listing them here would claim pages that do not exist as
+  far as a crawler is concerned.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://saranyaaramesh2104.github.io/portfolio/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>
