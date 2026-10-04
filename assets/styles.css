@@ -61,6 +61,7 @@ html[data-theme="dark"] .ink {
   --hairline: rgba(36, 21, 15, .07);
   --highlight: rgba(255, 255, 255, .75);
   --shadow-tint: rgba(36, 21, 15, .17);
+  --glow: rgba(195, 40, 36, .14);
   --grain-blend: multiply;
   --grain-opacity: .34;
 }
@@ -81,6 +82,7 @@ html[data-theme="light"] .ink {
   --hairline: rgba(255, 255, 255, .055);
   --highlight: rgba(255, 255, 255, .05);
   --shadow-tint: rgba(0, 0, 0, .7);
+  --glow: rgba(240, 101, 95, .18);
   --grain-blend: screen;
   --grain-opacity: .12;
 }
@@ -179,13 +181,29 @@ a:hover { color: var(--accent); }
 }
 .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 60px; }
 
+/* The wordmark echoes the hero's two-typeface split at nav scale, and the
+   mark is her own ten-lobed aster rather than a typed asterisk. */
 .nav-logo {
-  font-family: var(--font-wide);
-  font-weight: 700; font-size: .8rem;
-  letter-spacing: .16em; text-transform: uppercase;
-  text-decoration: none;
+  display: inline-flex; align-items: baseline; gap: .34em;
+  text-decoration: none; color: var(--text);
 }
-.nav-logo span { color: var(--accent); }
+.nav-logo-first {
+  font-family: var(--font-display); font-style: italic; font-weight: 500;
+  font-size: 1.12rem; letter-spacing: -.015em;
+  font-variation-settings: 'SOFT' 60, 'WONK' 1;
+}
+.nav-logo-last {
+  font-family: var(--font-wide);
+  font-weight: 700; font-size: .72rem;
+  letter-spacing: .16em; text-transform: uppercase;
+}
+.nav-mark {
+  align-self: center; flex: 0 0 auto;
+  color: var(--accent);
+  transition: transform 1.1s var(--ease);
+}
+.nav-logo:hover { color: var(--text); }
+.nav-logo:hover .nav-mark { transform: rotate(144deg); }
 
 .nav-links { display: flex; align-items: center; gap: 1.5rem; }
 .nav-links a {
@@ -197,6 +215,23 @@ a:hover { color: var(--accent); }
 .nav-links a:hover { color: var(--accent); }
 @media (max-width: 780px) { .nav-links a { display: none; } }
 
+/* The primary action keeps the pill treatment inside the nav. It needs the
+   extra specificity because `.nav-links a` would otherwise win on colour,
+   and it has to survive the rule above that hides the text links on a phone. */
+.nav-links a.nav-cta {
+  color: var(--accent-ink);
+  padding: .4rem .45rem .4rem .8rem;
+  letter-spacing: .1em;
+}
+.nav-links a.nav-cta:hover { color: var(--accent-ink); }
+/* The shared .cta-go pulls itself outward by -.5em to sit flush inside the
+   roomier hero pill. In the tighter nav pill that left about 1.5px, so the
+   arrow nearly touched the edge. Less pull here only. */
+.nav-links a.nav-cta .cta-go { margin-right: -.15em; }
+@media (max-width: 780px) { .nav-links a.nav-cta { display: inline-flex; } }
+/* Below this the logo and the pill start fighting for the same row. */
+@media (max-width: 430px) { .nav-links a.nav-cta { display: none; } }
+
 .icon-btn {
   display: grid; place-items: center; width: 36px; height: 36px; flex: 0 0 auto;
   border: 1px solid var(--border); border-radius: 50%;
@@ -204,7 +239,7 @@ a:hover { color: var(--accent); }
   transition: border-color .2s var(--ease), color .2s var(--ease);
 }
 .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
-.icon-btn svg { width: 17px; height: 17px; }
+.icon-btn svg { width: 16px; height: 16px; }
 html[data-theme="dark"] .icon-sun, html[data-theme="light"] .icon-moon { display: none; }
 
 /* ── Hero ─────────────────────────────────────────────────────────────── */
@@ -238,7 +273,16 @@ html[data-theme="dark"] .icon-sun, html[data-theme="light"] .icon-moon { display
 
 .hero-body { display: grid; gap: .85rem; }
 .hero-body p { max-width: 48ch; color: var(--text-muted); }
-.hero-body p:first-child { color: var(--text); font-size: 1.1rem; }
+/* The opening line carries the whole introduction now, so it is set in the
+   display face with the verbs picked out, the way she drew it. */
+.hero-hook {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.6vw, 1.85rem);
+  line-height: 1.28; letter-spacing: -.015em;
+  color: var(--text) !important; max-width: 22ch;
+  text-wrap: balance;
+}
+.hero-hook em { font-style: italic; color: var(--accent); font-variation-settings: 'SOFT' 60, 'WONK' 1; }
 
 /* Arched portrait on a blush ground, framed like the editorial references. */
 .portrait-frame { position: relative; justify-self: end; width: min(100%, 330px); }
@@ -305,8 +349,79 @@ html[data-theme="dark"] .icon-sun, html[data-theme="light"] .icon-moon { display
 .pill--solid { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 .pill--solid:hover { color: var(--accent-ink); filter: brightness(1.1); }
 
+/* Label with a rule running out to the right, like a legend. */
+.strip-label {
+  display: flex; align-items: center; gap: 1rem;
+  font-family: var(--font-wide); font-size: .63rem; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--text-dim);
+  margin-bottom: clamp(.9rem, 2vw, 1.3rem);
+}
+.strip-label::after { content: ''; flex: 1 1 auto; height: 1px; background: var(--border); }
+
+/* Capsules are taxonomy, not navigation. They carry no border and never
+   respond to hover, which is what keeps them from reading as buttons next
+   to the outlined nav pills and the solid call to action. */
+.spaces { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; }
+.space {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .5rem .95rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  font-family: var(--font-wide); font-size: .67rem; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--text);
+}
+.space svg { color: var(--accent); flex: 0 0 auto; }
+
+.doing { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); list-style: none; }
+.doing-item { padding-inline: clamp(.9rem, 2.2vw, 1.75rem); border-left: 1px solid var(--border); }
+.doing-item:first-child { padding-left: 0; border-left: 0; }
+.doing-icon { color: var(--accent); margin-bottom: .55rem; }
+.doing-item h3 {
+  font-family: var(--font-wide); font-size: .71rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; margin-bottom: .35rem;
+}
+.doing-item p { color: var(--text-muted); font-size: .87rem; }
+
+@media (max-width: 880px) {
+  .doing { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: clamp(1.4rem, 3vw, 2rem); }
+  .doing-item:nth-child(odd) { padding-left: 0; border-left: 0; }
+}
+@media (max-width: 540px) {
+  .doing { grid-template-columns: 1fr; }
+  .doing-item { padding-inline: 0; border-left: 0; }
+  /* Five capsules stacked would be a very tall column, so they scroll. */
+  .spaces { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-bottom: .3rem; }
+  .spaces::-webkit-scrollbar { display: none; }
+  .space { flex: 0 0 auto; }
+}
+
+/* ── Cursor glow ──────────────────────────────────────────────────────────
+   A soft light under the pointer. It sits at z-index 1, below the grain, so
+   the grain textures it. Only the layer transform changes each frame, so the
+   gradient itself never repaints. Desktop pointers only: a touch device has
+   no cursor, which is also what keeps the cost off phones entirely. */
+.cursor-glow { display: none; }
+@media (hover: hover) and (pointer: fine) {
+  .cursor-glow {
+    display: block;
+    position: fixed; top: 0; left: 0;
+    width: 620px; height: 620px; margin: -310px 0 0 -310px;
+    z-index: 1; pointer-events: none;
+    will-change: transform;
+    opacity: 0; transition: opacity .45s var(--ease);
+    background: radial-gradient(circle closest-side, var(--glow), transparent);
+  }
+  .cursor-glow.is-on { opacity: 1; }
+}
+body.a11y-motion .cursor-glow { display: none !important; }
+@media (prefers-reduced-motion: reduce) { .cursor-glow { display: none !important; } }
+
 /* ── Sections ─────────────────────────────────────────────────────────── */
 .section { position: relative; padding: clamp(2.75rem, 7vw, 5.5rem) 0; scroll-margin-top: 64px; }
+/* The two intro strips read as one block with the hero, so they run on a
+   tighter rhythm. This has to sit after .section to win on source order. */
+.section--tight { padding: clamp(1.1rem, 2.6vw, 1.9rem) 0; }
 .section.ink { overflow: hidden; }
 .section > .wrap { position: relative; z-index: 1; }
 .ink { background: var(--bg); color: var(--text); }
@@ -337,8 +452,9 @@ html[data-theme="dark"] .icon-sun, html[data-theme="light"] .icon-moon { display
 @keyframes marquee { to { transform: translateX(-100%); } }
 
 /* ── Stat band ────────────────────────────────────────────────────────── */
-.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap); }
-@media (max-width: 860px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.stats { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--gap); }
+@media (max-width: 1150px) { .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: clamp(1.4rem, 3vw, 2rem); } }
+@media (max-width: 720px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 .stat { border-top: 2px solid var(--accent); padding-top: .85rem; }
 .stat b {
@@ -427,6 +543,18 @@ figure { background: none; border: 0; }
 .shots--slides .shot { object-position: center; border-radius: var(--r-sm); }
 .shots--slides figcaption { padding: .55rem .15rem .25rem; }
 
+/* Hovering one launch tile lifts it while the others fall back, so the one
+   being read is clearly the front-most. Hover-capable pointers only, so a
+   phone never gets a stuck blurred state from a tap. */
+@media (hover: hover) and (pointer: fine) {
+  .shots--slides figure {
+    position: relative;
+    transition: transform .4s var(--ease), filter .4s var(--ease), opacity .4s var(--ease);
+  }
+  .shots--slides figure:hover { transform: translateY(-5px) scale(1.02); z-index: 1; }
+  .shots--slides:hover figure:not(:hover) { filter: blur(2px); opacity: .55; }
+}
+
 figcaption {
   padding: .6rem 0 0;
   font-family: var(--font-wide); font-size: .66rem; font-weight: 600;
@@ -447,7 +575,7 @@ figcaption {
 .link-card:hover { border-color: var(--accent); color: inherit; }
 .link-card svg, .link-card-text { transition: transform .25s var(--ease); }
 .link-card:hover svg, .link-card:hover .link-card-text { transform: translateX(.4rem); }
-.link-card svg { width: 18px; height: 18px; flex: 0 0 auto; color: var(--accent); }
+.link-card svg { width: 16px; height: 16px; flex: 0 0 auto; color: var(--accent); }
 .link-card-text { display: grid; gap: .08rem; min-width: 0; }
 .link-card-text strong { font-size: .92rem; font-weight: 600; }
 .link-card-text span { font-size: .76rem; color: var(--text-dim); overflow-wrap: anywhere; }
@@ -586,7 +714,7 @@ figcaption {
   box-shadow: var(--shadow); cursor: pointer; display: grid; place-items: center;
 }
 .a11y-fab:hover { border-color: var(--accent); color: var(--accent); }
-.a11y-fab svg { width: 21px; height: 21px; }
+.a11y-fab svg { width: 24px; height: 24px; }
 
 .a11y-panel {
   position: fixed; right: clamp(.85rem, 3vw, 1.5rem); bottom: calc(clamp(.85rem, 3vw, 1.5rem) + 56px);
@@ -647,6 +775,7 @@ body.a11y-contrast .tag { background: var(--text); color: var(--bg); }
 /* At high contrast --bg-card collapses to the page colour and soft shadows
    carry no meaning, so containers need a real border to stay containers. */
 body.a11y-contrast .tile { box-shadow: none; border: 1px solid var(--border); }
+body.a11y-contrast .space { border: 1px solid var(--border); }
 body.a11y-contrast .tile--draft { border-style: dashed; }
 body.a11y-contrast .cta-go { background: none; border: 1px solid currentColor; }
 
@@ -662,6 +791,8 @@ body.a11y-motion *, body.a11y-motion *::before, body.a11y-motion *::after {
   animation: none !important; transition: none !important; scroll-behavior: auto !important;
 }
 body.a11y-motion .reveal { opacity: 1 !important; transform: none !important; filter: none !important; }
+body.a11y-motion .shots--slides figure:hover { transform: none !important; }
+body.a11y-motion .shots--slides:hover figure:not(:hover) { filter: none !important; opacity: 1 !important; }
 body.a11y-motion .parallax { transform: none !important; }
 
 @media (prefers-reduced-motion: reduce) {
@@ -670,16 +801,87 @@ body.a11y-motion .parallax { transform: none !important; }
     transition-duration: .001ms !important; scroll-behavior: auto !important;
   }
   .reveal { opacity: 1 !important; transform: none !important; filter: none !important; }
+  .shots--slides figure:hover { transform: none !important; }
+  .shots--slides:hover figure:not(:hover) { filter: none !important; opacity: 1 !important; }
   .marquee-track { animation: none !important; }
 }
 
 /* ── Scroll reveal ────────────────────────────────────────────────────────
    Scoped to html.js so a failed script leaves content visible, not blank. */
 html.js .reveal {
-  opacity: 0; transform: translateY(18px); filter: blur(6px);
-  transition: opacity .8s var(--ease-out), transform .8s var(--ease-out), filter .8s var(--ease-out);
+  opacity: 0; transform: translateY(14px); filter: blur(4px);
+  transition: opacity .55s var(--ease-out), transform .55s var(--ease-out), filter .42s var(--ease-out);
 }
 html.js .reveal.is-visible { opacity: 1; transform: none; filter: blur(0); }
+
+/* Children arrive one behind another instead of the whole section lifting as
+   a single curtain. 8px and 30ms apart, following the Subtle stagger preset:
+   far enough to read as a sequence, not so far it feels like a queue.
+   Declared under no-preference so reduced motion never gets the hidden state
+   in the first place -- there is nothing to un-freeze. */
+@media (prefers-reduced-motion: no-preference) {
+  html.js .reveal [data-stagger] > * {
+    opacity: 0; transform: translateY(8px);
+    transition: opacity .38s var(--ease-out), transform .38s var(--ease-out);
+  }
+  html.js .reveal.is-visible [data-stagger] > * { opacity: 1; transform: none; }
+  html.js .reveal.is-visible [data-stagger] > :nth-child(1) { transition-delay: 0.00s; }
+  html.js .reveal.is-visible [data-stagger] > :nth-child(2) { transition-delay: 0.03s; }
+  html.js .reveal.is-visible [data-stagger] > :nth-child(3) { transition-delay: 0.06s; }
+  html.js .reveal.is-visible [data-stagger] > :nth-child(4) { transition-delay: 0.09s; }
+  html.js .reveal.is-visible [data-stagger] > :nth-child(5) { transition-delay: 0.12s; }
+  html.js .reveal.is-visible [data-stagger] > :nth-child(6) { transition-delay: 0.15s; }
+  html.js .reveal.is-visible [data-stagger] > :nth-child(7) { transition-delay: 0.18s; }
+  html.js .reveal.is-visible [data-stagger] > :nth-child(8) { transition-delay: 0.21s; }
+}
+
+/* The manual toggle is not the media query, so it needs its own opt-out. */
+body.a11y-motion [data-stagger] > * {
+  opacity: 1 !important; transform: none !important;
+  filter: none !important; transition-delay: 0s !important;
+}
+
+/* Her name is the one thing on this page that earns a real entrance: two
+   beats, the surname half a step behind. Both words are already in the HTML
+   as .n1 and .n2, so this stays CSS-only -- the text is selectable, readable
+   with JavaScript off, and nothing is reconstructed at runtime. Transform and
+   opacity only, so the display type never reflows. */
+@keyframes name-in {
+  from { opacity: 0; transform: translateY(.3em); }
+  to   { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  /* Hold the name until the real typefaces have landed. The fonts load with
+     display=swap, so without this the entrance starts on fallback text and is
+     77% over by the time Fraunces arrives -- measured. The swap itself then
+     carried no motion at all, which is why it read as barely happening.
+     Script always adds .fonts-ready, on load or on a timeout, so the hold
+     cannot strand the name. */
+  html.js .hero-name .n1,
+  html.js .hero-name .n2 { opacity: 0; }
+  html.js.fonts-ready .hero-name .n1,
+  html.js.fonts-ready .hero-name .n2 { animation: name-in 1.1s var(--ease-out) both; }
+  html.js.fonts-ready .hero-name .n2 { animation-delay: .3s; }
+}
+/* The motion toggle kills animations, so the hold state above needs an
+   explicit release or the name would simply never appear. */
+body.a11y-motion .hero-name .n1,
+body.a11y-motion .hero-name .n2 { opacity: 1 !important; animation: none !important; }
+
+/* The mark tracks how far down the page you are. Driven by the independent
+   `rotate` property rather than `transform`, so it composes with the hover
+   rotation above instead of overriding it -- scroll and hover both read.
+   Native scroll-driven animation, so this adds no scroll listener. Where it
+   is unsupported the mark simply sits still and keeps its hover turn. */
+@keyframes mark-track { to { rotate: 180deg; } }
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .nav-mark {
+      animation: mark-track linear both;
+      animation-timeline: scroll(root block);
+    }
+  }
+}
 
 /* ── Print ────────────────────────────────────────────────────────────── */
 @media print {
