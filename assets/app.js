@@ -138,7 +138,7 @@
 
   /* ── Motion: parallax shapes and magnetic cards ────────────────────── */
   var parallaxEls = Array.prototype.slice.call(document.querySelectorAll('.parallax'));
-  var magneticEls = Array.prototype.slice.call(document.querySelectorAll('.feature, .work-card'));
+  var magneticEls = Array.prototype.slice.call(document.querySelectorAll('.feature'));
   var parallaxQueued = false;
 
   function updateParallax() {
