@@ -61,7 +61,7 @@ html[data-theme="dark"] .ink {
   --hairline: rgba(36, 21, 15, .07);
   --highlight: rgba(255, 255, 255, .75);
   --shadow-tint: rgba(36, 21, 15, .17);
-  --glow: rgba(195, 40, 36, .07);
+  --glow: rgba(195, 40, 36, .14);
   --grain-blend: multiply;
   --grain-opacity: .34;
 }
@@ -82,7 +82,7 @@ html[data-theme="light"] .ink {
   --hairline: rgba(255, 255, 255, .055);
   --highlight: rgba(255, 255, 255, .05);
   --shadow-tint: rgba(0, 0, 0, .7);
-  --glow: rgba(240, 101, 95, .10);
+  --glow: rgba(240, 101, 95, .18);
   --grain-blend: screen;
   --grain-opacity: .12;
 }
@@ -406,7 +406,7 @@ html[data-theme="dark"] .icon-sun, html[data-theme="light"] .icon-moon { display
   .cursor-glow {
     display: block;
     position: fixed; top: 0; left: 0;
-    width: 520px; height: 520px; margin: -260px 0 0 -260px;
+    width: 620px; height: 620px; margin: -310px 0 0 -310px;
     z-index: 1; pointer-events: none;
     will-change: transform;
     opacity: 0; transition: opacity .45s var(--ease);
@@ -809,10 +809,67 @@ body.a11y-motion .parallax { transform: none !important; }
 /* ── Scroll reveal ────────────────────────────────────────────────────────
    Scoped to html.js so a failed script leaves content visible, not blank. */
 html.js .reveal {
-  opacity: 0; transform: translateY(18px); filter: blur(6px);
-  transition: opacity .8s var(--ease-out), transform .8s var(--ease-out), filter .8s var(--ease-out);
+  opacity: 0; transform: translateY(14px); filter: blur(4px);
+  transition: opacity .55s var(--ease-out), transform .55s var(--ease-out), filter .42s var(--ease-out);
 }
 html.js .reveal.is-visible { opacity: 1; transform: none; filter: blur(0); }
+
+/* Children arrive one behind another instead of the whole section lifting as
+   a single curtain. 8px and 30ms apart, following the Subtle stagger preset:
+   far enough to read as a sequence, not so far it feels like a queue.
+   Declared under no-preference so reduced motion never gets the hidden state
+   in the first place -- there is nothing to un-freeze. */
+@media (prefers-reduced-motion: no-preference) {
+  html.js .reveal [data-stagger] > * {
+    opacity: 0; transform: translateY(8px);
+    transition: opacity .38s var(--ease-out), transform .38s var(--ease-out);
+  }
+  html.js .reveal.is-visible [data-stagger] > * { opacity: 1; transform: none; }
+  html.js .reveal.is-visible [data-stagger] > :nth-child(1) { transition-delay: 0.00s; }
+  html.js .reveal.is-visible [data-stagger] > :nth-child(2) { transition-delay: 0.03s; }
+  html.js .reveal.is-visible [data-stagger] > :nth-child(3) { transition-delay: 0.06s; }
+  html.js .reveal.is-visible [data-stagger] > :nth-child(4) { transition-delay: 0.09s; }
+  html.js .reveal.is-visible [data-stagger] > :nth-child(5) { transition-delay: 0.12s; }
+  html.js .reveal.is-visible [data-stagger] > :nth-child(6) { transition-delay: 0.15s; }
+  html.js .reveal.is-visible [data-stagger] > :nth-child(7) { transition-delay: 0.18s; }
+  html.js .reveal.is-visible [data-stagger] > :nth-child(8) { transition-delay: 0.21s; }
+}
+
+/* The manual toggle is not the media query, so it needs its own opt-out. */
+body.a11y-motion [data-stagger] > * {
+  opacity: 1 !important; transform: none !important;
+  filter: none !important; transition-delay: 0s !important;
+}
+
+/* Her name is the one thing on this page that earns a real entrance: two
+   beats, the surname half a step behind. Both words are already in the HTML
+   as .n1 and .n2, so this stays CSS-only -- the text is selectable, readable
+   with JavaScript off, and nothing is reconstructed at runtime. Transform and
+   opacity only, so the display type never reflows. */
+@keyframes name-in {
+  from { opacity: 0; transform: translateY(.16em); }
+  to   { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html.js .hero-name .n1,
+  html.js .hero-name .n2 { animation: name-in .7s var(--ease-out) both; }
+  html.js .hero-name .n2 { animation-delay: .13s; }
+}
+
+/* The mark tracks how far down the page you are. Driven by the independent
+   `rotate` property rather than `transform`, so it composes with the hover
+   rotation above instead of overriding it -- scroll and hover both read.
+   Native scroll-driven animation, so this adds no scroll listener. Where it
+   is unsupported the mark simply sits still and keeps its hover turn. */
+@keyframes mark-track { to { rotate: 180deg; } }
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .nav-mark {
+      animation: mark-track linear both;
+      animation-timeline: scroll(root block);
+    }
+  }
+}
 
 /* ── Print ────────────────────────────────────────────────────────────── */
 @media print {
