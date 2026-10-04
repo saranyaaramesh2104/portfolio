@@ -37,8 +37,22 @@
 <link rel="stylesheet" href="assets/styles.css">
 
 <!-- Marks that scripting is available. The scroll-in animation is scoped to
-     html.js so that a failed script leaves the content visible, not blank. -->
-<script>document.documentElement.classList.add('js');</script>
+     html.js so that a failed script leaves the content visible, not blank.
+     The hero name is held hidden until the real typefaces land, so its
+     entrance is not spent animating fallback text. That release lives here
+     rather than in app.js for the same reason: one script owns both the hold
+     and the release, so a failed app.js can never leave the name invisible. -->
+<script>
+  var d = document.documentElement;
+  d.classList.add('js');
+  function releaseName() { d.classList.add('fonts-ready'); }
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(releaseName);
+    setTimeout(releaseName, 2500);
+  } else {
+    releaseName();
+  }
+</script>
 
 <script type="application/ld+json">
 {

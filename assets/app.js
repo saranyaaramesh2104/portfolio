@@ -201,6 +201,22 @@
     document.addEventListener('pointerleave', function () { glow.classList.remove('is-on'); });
   }
 
+  /* ── Name entrance ─────────────────────────────────────────────────── */
+  // The hold and its release live in the inline head script, so that a
+  // failure in this file cannot leave the name hidden. Only the replay,
+  // which is purely additive, lives here.
+  //
+  // Replaying on return means the entrance is not a single moment you can
+  // miss by looking away while the page loads.
+  function replayNameEntrance() {
+    if (motionOff()) return;
+    document.querySelectorAll('.hero-name .n1, .hero-name .n2').forEach(function (el) {
+      el.style.animation = 'none';
+      void el.offsetWidth;
+      el.style.animation = '';
+    });
+  }
+
   if (prefersReduced.addEventListener) {
     prefersReduced.addEventListener('change', function () {
       if (motionOff()) clearMotion();
@@ -297,6 +313,7 @@
     } else if (viewChanged) {
       // Entering or leaving a case study starts at the top.
       window.scrollTo(0, 0);
+      if (currentView === 'home') replayNameEntrance();
     }
   });
 
