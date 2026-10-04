@@ -142,7 +142,7 @@
   <section class="section section--tight reveal" id="spaces">
     <div class="wrap">
       <p class="strip-label">Spaces I&rsquo;ve worked in</p>
-      <ul class="spaces" data-stagger>
+      <ul class="spaces" data-stagger data-scroll-label="Spaces I have worked in">
         <li class="space"><svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M71.68,97.22,34.74,128l36.94,30.78a12,12,0,1,1-15.36,18.44l-48-40a12,12,0,0,1,0-18.44l48-40A12,12,0,0,1,71.68,97.22Zm176,21.56-48-40a12,12,0,1,0-15.36,18.44L221.26,128l-36.94,30.78a12,12,0,1,0,15.36,18.44l48-40a12,12,0,0,0,0-18.44ZM164.1,28.72a12,12,0,0,0-15.38,7.18l-64,176a12,12,0,0,0,7.18,15.37A11.79,11.79,0,0,0,96,228a12,12,0,0,0,11.28-7.9l64-176A12,12,0,0,0,164.1,28.72Z"/></svg>Tech &amp; startups</li>
         <li class="space"><svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M252,124a60.14,60.14,0,0,0-32-53.08,52,52,0,0,0-92-32.11A52,52,0,0,0,36,70.92a60,60,0,0,0,0,106.14,52,52,0,0,0,92,32.13,52,52,0,0,0,92-32.13A60.05,60.05,0,0,0,252,124ZM88,204a28,28,0,0,1-26.85-20.07c1,0,1.89.07,2.85.07h8a12,12,0,0,0,0-24H64A36,36,0,0,1,52,90.05a12,12,0,0,0,8-11.32V72a28,28,0,0,1,56,0v60.18a51.61,51.61,0,0,0-7.2-3.85,12,12,0,1,0-9.6,22A28,28,0,0,1,88,204Zm104-44h-8a12,12,0,0,0,0,24h8c1,0,1.9,0,2.85-.07a28,28,0,1,1-38-33.61,12,12,0,1,0-9.6-22,51.61,51.61,0,0,0-7.2,3.85V72a28,28,0,0,1,56,0v6.73a12,12,0,0,0,8,11.32,36,36,0,0,1-12,70Zm16-44a12,12,0,0,1-12,12,40,40,0,0,1-40-40V84a12,12,0,0,1,24,0v4a16,16,0,0,0,16,16A12,12,0,0,1,208,116ZM100,88a40,40,0,0,1-40,40,12,12,0,0,1,0-24A16,16,0,0,0,76,88V84a12,12,0,0,1,24,0Z"/></svg>Mental health</li>
         <li class="space"><svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M71.76,148H31.7a12,12,0,1,1,0-24H65.33l12.45-18.66a12,12,0,0,1,20,0l22,33,6-9a12,12,0,0,1,10-5.34h24a12,12,0,1,1,0,24h-17.6l-12.46,18.66a12,12,0,0,1-20,0l-22-33-6,9A12,12,0,0,1,71.76,148ZM177.91,36c-20.12,0-38,7.93-50.07,21.56C115.74,43.93,97.89,36,77.76,36A66,66,0,0,0,12.07,94.68,12,12,0,0,0,36,97.32,42,42,0,0,1,77.76,60c17.83,0,32.75,9.4,38.95,24.54a12,12,0,0,0,22.25,0C145.16,69.4,160.08,60,177.91,60A42.08,42.08,0,0,1,220,102c0,29.42-25.86,57.77-47.56,76.36a329,329,0,0,1-44.58,31.81c-10.87-6.45-35.37-22-56.51-42.73a12,12,0,1,0-16.84,17.12c30.39,29.81,66.15,49.2,67.66,50a12.06,12.06,0,0,0,11.39,0C138,232.14,244,174.34,244,102A66.12,66.12,0,0,0,177.91,36Z"/></svg>Women&rsquo;s health</li>
@@ -276,7 +276,7 @@
         <p class="section-intro">Shorter pieces and side projects — the things that do not need a whole case study behind them.</p>
       </div>
 
-      <div class="tile-grid tile-grid--wide">
+      <div class="tile-grid tile-grid--wide" data-scroll-label="Other work">
         <a class="tile" href="assets/home-design-5.pdf" target="_blank" rel="noopener">
           <img class="tile-img" src="assets/other-ui-prototype.jpg" loading="lazy"
                alt="Mobile app screen titled Find a therapist, with a search field and a list of therapists filtered to CBT." width="738" height="507">
@@ -303,6 +303,43 @@
           <p>Three thousand people follow along while I think out loud. One post on postcards quietly reached 64.7K.</p>
           <span class="tile-go">@holasaranyahere →</span>
         </a>
+
+        <!-- DRAFT COPY. These three came out of the sections cut in the
+             restructure. The images are hers; the wording is mine and needs
+             her eye on it before it counts as finished.
+             These three are plain tiles because there is nowhere to send
+             people yet. To give one a destination, swap its opening div tag
+             for an anchor with href, target blank and rel noopener, then add
+             a tile-go span at the end like the linked tiles above have.
+             Deliberately described rather than shown: example tag markup in
+             a comment gets picked up by greps and tooling as if it were real.
+             -->
+        <div class="tile">
+          <img class="tile-img" src="assets/home-mental-health-discord-moderation-1.jpg" loading="lazy"
+               alt="Channel list for a peer support Discord server, with channels for external resources, new users and feedback."
+               width="1147" height="645">
+          <p class="tile-kicker">Community</p>
+          <h3>Peer support server</h3>
+          <p>Moderating an online mental health community &mdash; channel structure, resource threads, and the quiet rules that keep a vulnerable space usable.</p>
+        </div>
+
+        <div class="tile">
+          <img class="tile-img" src="assets/home-college-events-1.jpg" loading="lazy"
+               alt="Group photograph of student organisers and volunteers after a college event."
+               width="979" height="874">
+          <p class="tile-kicker">Events</p>
+          <h3>Campus events</h3>
+          <p>Programming, promotion and day-of logistics for student events &mdash; the unglamorous coordination that decides whether anyone turns up.</p>
+        </div>
+
+        <div class="tile">
+          <img class="tile-img tile-img--whole" src="assets/home-writing-marketing-6.jpg" loading="lazy"
+               alt="Article header reading How Employee Well-Being Programs Boost Morale and Retention."
+               width="515" height="240">
+          <p class="tile-kicker">Published writing</p>
+          <h3>Employee well-being</h3>
+          <p>A piece on building well-being programmes people actually use, rather than ones that only look good in a deck.</p>
+        </div>
       </div>
     </div>
   </section>
