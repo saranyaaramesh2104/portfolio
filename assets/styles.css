@@ -681,6 +681,8 @@ figcaption {
 }
 .case-section p { max-width: var(--measure); color: var(--text-muted); }
 .case-section p + p { margin-top: .8rem; }
+.case-section .shots + p, .case-section p + .shots { margin-top: 1.1rem; }
+.case-section > ul { max-width: var(--measure); margin: .2rem 0 0 1.1rem; display: grid; gap: .35rem; color: var(--text-muted); }
 
 /* Numbered points inside a case study — "01 | HOW I FOUND THE RIGHT CREATORS"
    and the question-and-answer blocks. Without this they ran together, because

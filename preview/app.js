@@ -217,6 +217,50 @@
     });
   }
 
+  /* ── Horizontal strips: keyboard reach ─────────────────────────────── */
+  // Two rows scroll sideways on narrow screens: the capsule strip and Other
+  // work. Neither has links in every item -- the capsules are plain list
+  // items with no anchor at all -- so a keyboard user had no way to scroll
+  // them and simply never reached the items past the fold. Measured at 390px:
+  // three of five capsules and three of six tiles were unreachable.
+  //
+  // A scroll container must be focusable to be arrow-scrollable, but only
+  // while it actually scrolls, otherwise desktop picks up a tab stop that
+  // does nothing. So this is re-evaluated on resize rather than set once.
+  var strips = Array.prototype.slice.call(
+    document.querySelectorAll('[data-scroll-label]')
+  );
+
+  function syncStripReach() {
+    strips.forEach(function (strip) {
+      var scrolls = strip.scrollWidth > strip.clientWidth + 2;
+      if (scrolls === (strip.getAttribute('tabindex') === '0')) return;
+      if (scrolls) {
+        strip.setAttribute('tabindex', '0');
+        strip.setAttribute('role', 'group');
+        strip.setAttribute('aria-label', strip.dataset.scrollLabel + ', scrollable row');
+      } else {
+        strip.removeAttribute('tabindex');
+        strip.removeAttribute('role');
+        strip.removeAttribute('aria-label');
+      }
+    });
+  }
+
+  if (strips.length) {
+    syncStripReach();
+    window.addEventListener('load', syncStripReach);
+    var stripQueued = false;
+    window.addEventListener('resize', function () {
+      if (stripQueued) return;
+      stripQueued = true;
+      requestAnimationFrame(function () {
+        stripQueued = false;
+        syncStripReach();
+      });
+    });
+  }
+
   if (prefersReduced.addEventListener) {
     prefersReduced.addEventListener('change', function () {
       if (motionOff()) clearMotion();
