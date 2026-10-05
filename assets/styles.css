@@ -520,6 +520,19 @@ body.a11y-motion .cursor-glow { display: none !important; }
   transition: transform .4s var(--ease);
 }
 .work-card-blank img { width: 44%; opacity: .75; }
+.work-card-blank--logo { background: #000; }
+.work-card-blank--logo img { width: 58%; opacity: 1; }
+
+/* Client marks sit on their own brand colour, so they keep a light backing in
+   both themes rather than taking on the page palette. */
+.brand-title { display: flex; align-items: center; gap: .6rem; }
+.brand-mark {
+  flex: 0 0 auto; width: 32px; height: 32px;
+  border-radius: 9px; background: #fff; object-fit: cover;
+  box-shadow: 0 0 0 1px var(--border);
+}
+.feature-body .brand-mark { width: 40px; height: 40px; border-radius: 11px; }
+.brand-mark--case { display: block; width: 44px; height: 44px; border-radius: 12px; margin-bottom: 1rem; }
 
 .work-card-body { display: grid; gap: .3rem; }
 .work-card-body h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 500; letter-spacing: -.01em; }
