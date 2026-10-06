@@ -61,8 +61,7 @@ html[data-theme="dark"] .ink {
   --hairline: rgba(36, 21, 15, .07);
   --highlight: rgba(255, 255, 255, .75);
   --shadow-tint: rgba(36, 21, 15, .17);
-  --glow: rgba(195, 40, 36, .1);
-  --glow-grain: .23;
+  --glow: rgba(195, 40, 36, .14);
   --grain-blend: multiply;
   --grain-opacity: .34;
 }
@@ -83,8 +82,7 @@ html[data-theme="light"] .ink {
   --hairline: rgba(255, 255, 255, .055);
   --highlight: rgba(255, 255, 255, .05);
   --shadow-tint: rgba(0, 0, 0, .7);
-  --glow: rgba(240, 101, 95, .13);
-  --glow-grain: .28;
+  --glow: rgba(240, 101, 95, .18);
   --grain-blend: screen;
   --grain-opacity: .12;
 }
@@ -211,7 +209,7 @@ a:hover { color: var(--accent); }
    cleared on animationend, so leaving mid-turn never snaps it back. */
 @keyframes name-flip { to { transform: rotateY(360deg); } }
 @media (prefers-reduced-motion: no-preference) {
-  .nav-logo-first.is-flipping { animation: name-flip .8s var(--ease); }
+  .nav-logo-first.is-flipping { animation: name-flip 1.4s var(--ease); }
 }
 body.a11y-motion .nav-logo-first { animation: none !important; }
 
@@ -430,26 +428,19 @@ html[data-theme="dark"] .icon-sun, html[data-theme="light"] .icon-moon { display
   .cursor-glow {
     display: block;
     position: fixed; top: 0; left: 0;
-    width: 620px; height: 620px; margin: -310px 0 0 -310px;
+    width: 820px; height: 820px; margin: -410px 0 0 -410px;
     z-index: 1; pointer-events: none;
     will-change: transform;
     opacity: 0; transition: opacity .45s var(--ease);
-    background: radial-gradient(circle closest-side, var(--glow), transparent);
+    background: radial-gradient(circle closest-side,
+      var(--glow),
+      color-mix(in srgb, var(--glow) 80%, transparent) 22%,
+      color-mix(in srgb, var(--glow) 50%, transparent) 42%,
+      color-mix(in srgb, var(--glow) 22%, transparent) 62%,
+      color-mix(in srgb, var(--glow) 6%, transparent) 82%,
+      transparent);
   }
   .cursor-glow.is-on { opacity: 1; }
-  /* Grain inside the glow, in the accent colour: the noise tile and the
-     glow's own falloff are both masks, so only speckle near the cursor
-     shows and it fades out with the light. */
-  .cursor-glow::after {
-    content: ''; position: absolute; inset: 0;
-    background: var(--accent); opacity: var(--glow-grain);
-    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 9 -5'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)'/%3E%3C/svg%3E"), radial-gradient(circle closest-side, #000 15%, transparent);
-    -webkit-mask-composite: source-in;
-    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 9 -5'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)'/%3E%3C/svg%3E"), radial-gradient(circle closest-side, #000 15%, transparent);
-    mask-composite: intersect;
-    mask-size: 160px 160px, 100% 100%;
-    -webkit-mask-size: 160px 160px, 100% 100%;
-  }
 }
 body.a11y-motion .cursor-glow { display: none !important; }
 @media (prefers-reduced-motion: reduce) { .cursor-glow { display: none !important; } }
@@ -585,6 +576,7 @@ figure { background: none; border: 0; }
 /* For screenshots that must not lose their edges to a crop. */
 .shot--fit { aspect-ratio: 16 / 10; object-fit: contain; object-position: top center; background: none; }
 .shot--fit-tall { aspect-ratio: 3 / 4; object-fit: contain; object-position: top center; background: none; }
+.shot--wide { aspect-ratio: 2 / 1; object-fit: cover; object-position: top center; }
 .shot--left { object-position: top left; }
 .shot-link { display: block; border-radius: var(--r-md); }
 .shot-link .shot { cursor: pointer; }
