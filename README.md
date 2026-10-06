@@ -19,9 +19,9 @@ alternating down the page and inverting in dark mode, a film-grain overlay, a
 scrolling keyword strip, one featured case study against three secondary cards,
 and the design work running full-bleed.
 
-The palette is sampled from Saranyaa's own Decoding Draupadi artwork — deep red
-`#c32824`, coral `#f0655f`, cream `#ffecc7`, blush `#f8e4e4` — and the
-decorative shapes in `assets/shape-*.svg` are her motifs redrawn as vectors.
+The palette is lavender on porcelain — deep violet `#5a3e91`, lavender
+`#b9a6e3`, porcelain `#f7f6fb`, mist `#ece8f6` — and the decorative shapes in
+`assets/shape-*.svg` are her motifs redrawn as vectors.
 
 ## How it is put together
 
