@@ -236,7 +236,7 @@ Three bits of copy are mine rather than yours, and you will write them better:
 ### 4. Replace the hero photo, if you want
 
 The current one is the selfie from your Notion page. It is warm and it works. If
-you have something you like more, save it as `assets/home-1.jpg` and it will
+you have something you like more, save it as `assets/home-1-lavender.jpg` and it will
 swap straight in.
 
 ---
