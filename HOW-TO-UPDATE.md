@@ -252,7 +252,6 @@ swap straight in.
 | `assets/og-card.jpg` | The picture that shows up when someone shares your link. See the note below |
 | `assets/*.jpg`, `*.png`, `*.pdf` | Your images and documents, copied out of Notion |
 | `404.html` | What someone sees if they mistype a web address |
-| `preview/` | A copy used to show you changes before they go live. Hidden from search engines. Ignore it |
 | `content.json` | A record of what was pulled from Notion. Not used by the site |
 | `tools/export_notion.py` | The script that did the copying. Already run; kept for reference |
 | `README.md` | A short note for anyone who finds the code |
