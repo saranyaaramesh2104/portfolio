@@ -294,11 +294,21 @@
     if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
 
+  /* ── Name flip ─────────────────────────────────────────────────────── */
+  var logoFirst = document.querySelector('.nav-logo-first');
+  if (logoFirst) {
+    var startFlip = function () { logoFirst.classList.add('is-flipping'); };
+    var logoLink = logoFirst.closest('.nav-logo');
+    logoLink.addEventListener('pointerenter', startFlip);
+    logoLink.addEventListener('focus', startFlip);
+    logoFirst.addEventListener('animationend', function () { logoFirst.classList.remove('is-flipping'); });
+  }
+
   // Delegated so images added to the HTML later need no extra wiring. The
   // decorative SVG shapes are excluded because they have no alt text.
   document.addEventListener('click', function (event) {
     var zoomable = event.target.closest('.shot, .community-card img');
-    if (zoomable && !zoomable.closest('.work-card-blank') && !zoomable.classList.contains('decor')) {
+    if (zoomable && !zoomable.closest('.work-card-blank, a') && !zoomable.classList.contains('decor')) {
       openLightbox(zoomable);
       return;
     }
