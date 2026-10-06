@@ -546,7 +546,13 @@ body.a11y-motion .cursor-glow { display: none !important; }
   letter-spacing: .1em; text-transform: uppercase;
 }
 
-.shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: var(--gap); margin-top: .35rem; }
+.shots {
+  display: grid;
+  direction: ltr;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: var(--gap);
+  margin-top: .35rem;
+}
 .shots--tight { grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr)); }
 .shots--one { grid-template-columns: minmax(0, 460px); }
 
@@ -554,10 +560,18 @@ body.a11y-motion .cursor-glow { display: none !important; }
    what made the layout feel boxy. */
 figure { background: none; border: 0; }
 
-.shot { width: 100%; cursor: default; border-radius: var(--r-md); transition: transform .4s var(--ease), opacity .2s var(--ease); }
+.shot {
+  width: 100%;
+  cursor: default !important;
+  border-radius: var(--r-md);
+  transition: transform .4s var(--ease), opacity .2s var(--ease);
+}
 .shot:hover { opacity: .94; }
 .shot-link { display: block; }
-.shot-link .shot { cursor: pointer; }
+.shot-link,
+.shot-link .shot {
+  cursor: pointer !important;
+}
 .shot--cover { height: auto; object-fit: contain; object-position: top center; }
 .shot--square { aspect-ratio: 1 / 1; object-fit: cover; }
 .shot--tall { aspect-ratio: 3 / 4; object-fit: cover; object-position: top center; }
