@@ -62,6 +62,7 @@ html[data-theme="dark"] .ink {
   --highlight: rgba(255, 255, 255, .75);
   --shadow-tint: rgba(28, 26, 36, .17);
   --glow: rgba(90, 62, 145, .14);
+  --case-mark-opacity: .07;
   --grain-blend: multiply;
   --grain-opacity: .34;
 }
@@ -83,6 +84,7 @@ html[data-theme="light"] .ink {
   --highlight: rgba(255, 255, 255, .05);
   --shadow-tint: rgba(0, 0, 0, .7);
   --glow: rgba(199, 182, 238, .15);
+  --case-mark-opacity: .08;
   --grain-blend: screen;
   --grain-opacity: .12;
 }
@@ -685,7 +687,24 @@ figcaption {
 }
 
 /* ── Case studies ─────────────────────────────────────────────────────── */
-.case { padding: clamp(2rem, 6vw, 3.5rem) 0 1rem; }
+.case { position: relative; overflow-x: clip; padding: clamp(2rem, 6vw, 3.5rem) 0 1rem; }
+/* The client's mark, oversized and tinted in the accent, half off the right
+   edge behind the case header. A mask rather than an <img> so one colour
+   token recolours all four marks in both themes. */
+.case-mark {
+  --size: clamp(320px, 46vw, 660px);
+  position: absolute; top: clamp(1rem, 4vw, 2.5rem); right: calc(var(--size) * -.42);
+  width: var(--size); height: var(--size);
+  background: var(--accent); opacity: var(--case-mark-opacity);
+  -webkit-mask: var(--mark) center / contain no-repeat;
+  mask: var(--mark) center / contain no-repeat;
+  pointer-events: none;
+}
+.case-mark--morphic { --mark: url("mark-morphic.svg"); }
+.case-mark--headout { --mark: url("mark-headout.svg"); }
+.case-mark--yaas { --mark: url("mark-yaas.png"); }
+.case-mark--decoding-draupadi { --mark: url("mark-decoding-draupadi.png"); }
+@media (max-width: 700px) { .case-mark { --size: 300px; right: -150px; top: .5rem; } }
 
 .case-back {
   display: inline-flex; align-items: center; gap: .4rem;
@@ -880,6 +899,13 @@ html.js .reveal.is-visible { opacity: 1; transform: none; filter: blur(0); }
   html.js .reveal.is-visible [data-stagger] > :nth-child(6) { transition-delay: 0.15s; }
   html.js .reveal.is-visible [data-stagger] > :nth-child(7) { transition-delay: 0.18s; }
   html.js .reveal.is-visible [data-stagger] > :nth-child(8) { transition-delay: 0.21s; }
+  /* The settled state above outranks a.tile:hover, which left these tiles
+     flat while every other card on the page lifts. */
+  html.js .reveal.is-visible [data-stagger] > a.tile {
+    transition: opacity .38s var(--ease-out), transform .35s var(--ease), box-shadow .35s var(--ease);
+  }
+  html.js .reveal.is-visible [data-stagger] > a.tile:hover { transform: translateY(-3px); transition-delay: 0s; }
+  html.js .reveal.is-visible [data-stagger] > a.tile:active { transform: translateY(0); }
 }
 
 /* The manual toggle is not the media query, so it needs its own opt-out. */
