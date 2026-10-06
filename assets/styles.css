@@ -1075,6 +1075,14 @@ a.tile:active { transform: translateY(0); }
 
 /* The nav gave no clue which section you were looking at. */
 .nav-links a[aria-current="true"] { color: var(--accent); }
+/* The CTA is already an accent pill, so accent text made it read blank.
+   It keeps its ink and lights up with a halo instead. */
+.nav-links a.nav-cta[aria-current="true"] {
+  color: var(--accent-ink);
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent),
+    0 0 22px color-mix(in srgb, var(--accent) 50%, transparent);
+}
 
 /* Figures read as data, so they should not jiggle as the digits change. */
 .stat b, .metric b, .feature-metrics div b { font-variant-numeric: tabular-nums; }
