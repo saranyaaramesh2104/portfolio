@@ -201,6 +201,61 @@
     document.addEventListener('pointerleave', function () { glow.classList.remove('is-on'); });
   }
 
+  /* ── Other work: cursor preview ────────────────────────────────────── */
+  // One shared image that trails the pointer over the index rows. It eases
+  // toward the cursor; with motion off it simply sits beside it. Touch and
+  // narrow screens get inline thumbnails from the CSS instead.
+  var preview = document.querySelector('.wi-preview');
+  var workIndex = document.querySelector('.work-index');
+  if (preview && workIndex && finePointer.matches) {
+    var pImg = preview.querySelector('img');
+    var tx = 0, ty = 0, px = 0, py = 0, previewRunning = false, preloaded = false;
+
+    function paintPreview() {
+      var snap = motionOff();
+      px = snap ? tx : px + (tx - px) * 0.18;
+      py = snap ? ty : py + (ty - py) * 0.18;
+      preview.style.transform = 'translate3d(' + px.toFixed(1) + 'px,' + py.toFixed(1) + 'px,0)';
+      if (!snap && (Math.abs(tx - px) > 0.5 || Math.abs(ty - py) > 0.5)) {
+        requestAnimationFrame(paintPreview);
+      } else {
+        previewRunning = false;
+      }
+    }
+
+    function aimPreview(event) {
+      // Above the cursor, so it never covers the row being read; below it
+      // only when there is no room at the top of the screen.
+      var w = preview.offsetWidth, h = pImg.offsetHeight || 200;
+      tx = Math.max(16, Math.min(event.clientX - w * 0.35, window.innerWidth - w - 16));
+      ty = event.clientY - h - 48;
+      if (ty < 72) ty = Math.min(event.clientY + 36, window.innerHeight - h - 16);
+      if (!previewRunning) { previewRunning = true; requestAnimationFrame(paintPreview); }
+    }
+
+    workIndex.querySelectorAll('.wi-row[data-preview]').forEach(function (row) {
+      row.addEventListener('pointerenter', function (event) {
+        if (event.pointerType === 'touch') return;
+        if (!preloaded) {
+          preloaded = true;
+          workIndex.querySelectorAll('.wi-row[data-preview]').forEach(function (r) {
+            new Image().src = r.getAttribute('data-preview');
+          });
+        }
+        var thumb = row.querySelector('.wi-thumb');
+        pImg.src = row.getAttribute('data-preview');
+        preview.classList.toggle('is-left', !!thumb && thumb.classList.contains('wi-thumb--left'));
+        preview.classList.toggle('is-whole', !!thumb && thumb.classList.contains('wi-thumb--whole'));
+        aimPreview(event);
+        // Appear at the cursor rather than flying in from the last position.
+        if (!preview.classList.contains('is-on')) { px = tx; py = ty; }
+        preview.classList.add('is-on');
+      });
+      row.addEventListener('pointermove', aimPreview);
+    });
+    workIndex.addEventListener('pointerleave', function () { preview.classList.remove('is-on'); });
+  }
+
   /* ── Name entrance ─────────────────────────────────────────────────── */
   // The hold and its release live in the inline head script, so that a
   // failure in this file cannot leave the name hidden. Only the replay,
@@ -218,11 +273,10 @@
   }
 
   /* ── Horizontal strips: keyboard reach ─────────────────────────────── */
-  // Two rows scroll sideways on narrow screens: the capsule strip and Other
-  // work. Neither has links in every item -- the capsules are plain list
-  // items with no anchor at all -- so a keyboard user had no way to scroll
-  // them and simply never reached the items past the fold. Measured at 390px:
-  // three of five capsules and three of six tiles were unreachable.
+  // The capsule strip scrolls sideways on narrow screens. Its items are
+  // plain list items with no anchor at all, so a keyboard user had no way to
+  // scroll it and simply never reached the items past the fold. Measured at
+  // 390px: three of five capsules were unreachable.
   //
   // A scroll container must be focusable to be arrow-scrollable, but only
   // while it actually scrolls, otherwise desktop picks up a tab stop that

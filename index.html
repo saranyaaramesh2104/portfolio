@@ -63,7 +63,7 @@
   "name": "Saranyaa Ramesh",
   "jobTitle": "Writer & Creative Strategist",
   "email": "mailto:saranyaar2104@gmail.com",
-  "image": "assets/home-1-lavender.jpg",
+  "image": "assets/home-profile.jpg",
   "description": "Writer and creative strategist with a background in psychology and journalism, working across content, brand, social, and growth.",
   "knowsAbout": ["Content Strategy", "Copywriting", "SEO", "Brand Communication", "Social Media", "Product Marketing"],
   "sameAs": [
@@ -128,8 +128,8 @@
         </div>
 
         <div class="portrait-frame">
-          <img class="portrait" src="assets/home-1-lavender.jpg?v=2" width="1024" height="768"
-               alt="Saranyaa Ramesh, smiling, with curly shoulder-length hair and a red checked shirt.">
+          <img class="portrait" src="assets/home-profile.jpg" width="787" height="1400"
+               alt="Saranyaa Ramesh, smiling, with curly shoulder-length hair, lavender eyeshadow and a white T-shirt.">
         </div>
       </div>
     </div>
@@ -267,8 +267,9 @@
   <!-- ── Personal projects ────────────────────────────────────────────── -->
   <!-- ── Other work ───────────────────────────────────────────────────
        Shorter pieces that do not need a whole case study.
-       To add one, copy a whole <a class="tile"> ... </a> block below.
-       Drop the tile-img line if an item has no picture. -->
+       To add one, copy a whole <li> ... </li> row below and change the
+       link, both image paths (data-preview and the img), and the words.
+       No link? Use the Peer support row as the pattern: a <div> with no arrow. -->
   <section class="section reveal" id="other">
     <div class="wrap">
       <div class="section-head">
@@ -276,62 +277,61 @@
         <p class="section-intro">Shorter pieces and side projects — the things that do not need a whole case study behind them.</p>
       </div>
 
-      <div class="tile-grid tile-grid--wide" data-scroll-label="Other work">
-        <a class="tile" href="assets/home-design-5.pdf" target="_blank" rel="noopener">
-          <img class="tile-img" src="assets/other-ui-prototype.jpg" loading="lazy"
-               alt="Mobile app screen titled Find a therapist, with a search field and a list of therapists filtered to CBT." width="738" height="507">
-          <p class="tile-kicker">Product design</p>
-          <h3>Mental health app</h3>
-          <p>A UI prototype for finding and booking a therapist — screens, flow and copy, designed end to end in Figma.</p>
-          <span class="tile-go">Figma walkthrough, PDF →</span>
+      <ul class="work-index" data-stagger>
+      <li>
+        <a class="wi-row" href="assets/home-design-5.pdf" target="_blank" rel="noopener" data-preview="assets/other-ui-prototype.jpg">
+          <img class="wi-thumb" src="assets/other-ui-prototype.jpg" loading="lazy" alt="Mobile app screen titled Find a therapist, with a search field and a list of therapists filtered to CBT.">
+          <span class="wi-kicker">Product design</span>
+          <span class="wi-title">Mental health app</span>
+          <span class="wi-line">A UI prototype for finding and booking a therapist — screens, flow and copy, designed end to end in Figma.</span>
+          <span class="wi-go"><span class="visually-hidden">Figma walkthrough, PDF</span><span aria-hidden="true">→</span></span>
         </a>
-
-        <a class="tile" href="https://saranyaa1310.substack.com/" target="_blank" rel="noopener">
-          <img class="tile-img" src="assets/home-writing-marketing-5.jpg" loading="lazy"
-               alt="Anya’s Newsletter homepage on Substack, showing recent essays and a most-popular list." width="1600" height="857">
-          <p class="tile-kicker">Newsletter</p>
-          <h3>Anya’s Newsletter</h3>
-          <p>Personal essays on growth, therapy, films and the small things — written and published on my own schedule.</p>
-          <span class="tile-go">Read on Substack →</span>
+      </li>
+      <li>
+        <a class="wi-row" href="https://saranyaa1310.substack.com/" target="_blank" rel="noopener" data-preview="assets/home-writing-marketing-5.jpg">
+          <img class="wi-thumb" src="assets/home-writing-marketing-5.jpg" loading="lazy" alt="Anya’s Newsletter homepage on Substack, showing recent essays and a most-popular list.">
+          <span class="wi-kicker">Newsletter</span>
+          <span class="wi-title">Anya’s Newsletter</span>
+          <span class="wi-line">Personal essays on growth, therapy, films and the small things — written and published on my own schedule.</span>
+          <span class="wi-go"><span class="visually-hidden">Read on Substack</span><span aria-hidden="true">→</span></span>
         </a>
-
-        <a class="tile" href="https://twitter.com/holasaranyahere" target="_blank" rel="noopener">
-          <img class="tile-img tile-img--left" src="assets/home-content-2.png" loading="lazy"
-               alt="A post on X from @holasaranyahere about sending postcards, showing 64.7K views." width="584" height="322">
-          <p class="tile-kicker">Writing in public</p>
-          <h3>Short-form on X</h3>
-          <p>Three thousand people follow along while I think out loud. One post on postcards quietly reached 64.7K.</p>
-          <span class="tile-go">@holasaranyahere →</span>
+      </li>
+      <li>
+        <a class="wi-row" href="https://twitter.com/holasaranyahere" target="_blank" rel="noopener" data-preview="assets/home-content-2.png">
+          <img class="wi-thumb wi-thumb--left" src="assets/home-content-2.png" loading="lazy" alt="A post on X from @holasaranyahere about sending postcards, showing 64.7K views.">
+          <span class="wi-kicker">Writing in public</span>
+          <span class="wi-title">Short-form on X</span>
+          <span class="wi-line">Three thousand people follow along while I think out loud. My top post reached 190K; this one on postcards, 64.7K.</span>
+          <span class="wi-go"><span class="visually-hidden">@holasaranyahere</span><span aria-hidden="true">→</span></span>
         </a>
-
-        <div class="tile">
-          <img class="tile-img" src="assets/home-mental-health-discord-moderation-1.jpg" loading="lazy"
-               alt="Channel list for a peer support Discord server, with channels for external resources, new users and feedback."
-               width="1147" height="645">
-          <p class="tile-kicker">Community</p>
-          <h3>Peer support server</h3>
-          <p>Moderating an online mental health community &mdash; channel structure, resource threads, and the quiet rules that keep it safe.</p>
+      </li>
+      <li>
+        <div class="wi-row" data-preview="assets/home-mental-health-discord-moderation-1.jpg">
+          <img class="wi-thumb" src="assets/home-mental-health-discord-moderation-1.jpg" loading="lazy" alt="Channel list for a peer support Discord server, with channels for external resources, new users and feedback.">
+          <span class="wi-kicker">Community</span>
+          <span class="wi-title">Peer support server</span>
+          <span class="wi-line">Moderating an online mental health community &mdash; channel structure, resource threads, and the quiet rules that keep it safe.</span>
         </div>
-
-        <a class="tile" href="https://www.instagram.com/anyaohnanana" target="_blank" rel="noopener">
-          <img class="tile-img" src="assets/instagram.png" loading="lazy"
-               alt="Anya’s Instagram profile, described as a person of the internet who occasionally makes videos." width="1656" height="582">
-          <p class="tile-kicker">Personal brand</p>
-          <h3>Me, on Instagram</h3>
-          <p>Videos on internet pop culture, women’s health and my observations about the world and people. I like being on camera, and this space is mine.</p>
-          <span class="tile-go">@anyaohnanana →</span>
+      </li>
+      <li>
+        <a class="wi-row" href="https://www.instagram.com/anyaohnanana" target="_blank" rel="noopener" data-preview="assets/instagram.png">
+          <img class="wi-thumb" src="assets/instagram.png" loading="lazy" alt="Anya’s Instagram profile, described as a person of the internet who occasionally makes videos.">
+          <span class="wi-kicker">Personal brand</span>
+          <span class="wi-title">Me, on Instagram</span>
+          <span class="wi-line">Videos on internet pop culture, women’s health and my observations about the world and people. I like being on camera, and this space is mine.</span>
+          <span class="wi-go"><span class="visually-hidden">@anyaohnanana</span><span aria-hidden="true">→</span></span>
         </a>
-
-        <a class="tile" href="assets/ghostwriting.png" target="_blank" rel="noopener">
-          <img class="tile-img tile-img--whole" src="assets/ghostwriting.png" loading="lazy"
-               alt="LinkedIn post written in a founder’s voice about moving from fintech to mental health, with the founder’s details removed."
-               width="543" height="427">
-          <p class="tile-kicker">Ghostwriting &amp; engagement</p>
-          <h3>Founder voice on LinkedIn</h3>
-          <p>Founder thought leadership written from our conversations, so posts sound like them, not the brand. Plus LinkedIn engagement work.</p>
-          <span class="tile-go">See a sample →</span>
+      </li>
+      <li>
+        <a class="wi-row" href="assets/ghostwriting.png" target="_blank" rel="noopener" data-preview="assets/ghostwriting.png">
+          <img class="wi-thumb wi-thumb--whole" src="assets/ghostwriting.png" loading="lazy" alt="LinkedIn post written in a founder’s voice about moving from fintech to mental health, with the founder’s details removed.">
+          <span class="wi-kicker">Ghostwriting &amp; engagement</span>
+          <span class="wi-title">Founder voice on LinkedIn</span>
+          <span class="wi-line">Founder thought leadership written from our conversations, so posts sound like them, not the brand. Plus LinkedIn engagement work.</span>
+          <span class="wi-go"><span class="visually-hidden">See a sample</span><span aria-hidden="true">→</span></span>
         </a>
-      </div>
+      </li>
+      </ul>
     </div>
   </section>
 
@@ -609,12 +609,13 @@
     </section>
 
     <section class="case-section">
-      <h2>On Instagram</h2>
-      <ul>
-        <li><a href="PASTE-PAGE-LINK" target="_blank" rel="noopener">The Career Hook, the page</a></li>
-        <li><a href="PASTE-VIDEO-LINK-1" target="_blank" rel="noopener">Top-performing video 1</a></li>
-        <li><a href="PASTE-VIDEO-LINK-2" target="_blank" rel="noopener">Top-performing video 2</a></li>
-      </ul>
+      <h2>Top-performing videos</h2>
+      <!-- To swap a video, change the reel ID in both the iframe src and the link below it. -->
+      <div class="reels">
+        <div class="reel"><iframe src="https://www.instagram.com/reel/DWYMXerOMYJ/embed" loading="lazy" title="The Career Hook reel on Instagram, top performer 1" allowtransparency="true"></iframe></div>
+        <div class="reel"><iframe src="https://www.instagram.com/reel/DW1aLSOR3gu/embed" loading="lazy" title="The Career Hook reel on Instagram, top performer 2" allowtransparency="true"></iframe></div>
+      </div>
+      <p class="reels-links">Not loading? Watch <a href="https://www.instagram.com/reel/DWYMXerOMYJ/" target="_blank" rel="noopener">reel 1</a> or <a href="https://www.instagram.com/reel/DW1aLSOR3gu/" target="_blank" rel="noopener">reel 2</a> on Instagram.</p>
     </section>
 
     <section class="case-section">
@@ -706,6 +707,7 @@
   <button class="a11y-reset" id="a11yReset" type="button">Reset all</button>
 </div>
 
+<div class="wi-preview" aria-hidden="true"><img alt=""></div>
 <script src="assets/app.js"></script>
 </body>
 </html>

@@ -109,8 +109,9 @@ tidy than the others.
 
 ### Adding a box
 
-Three places on the site use the same box: **Other work**, **Off the clock**,
-and **What I can do for you**. Learn it once and all three work the same way.
+Two places on the site use the same box: **Off the clock** and **What I can
+do for you**. Learn it once and both work the same way. (Other work is a list
+rather than boxes; see "Adding a row to Other work" below.)
 
 To add one, copy a whole block from `<a class="tile"` down to `</a>` and change
 the words:
@@ -127,6 +128,28 @@ the words:
 If there is nowhere to send people, use `<article class="tile">` and `</article>`
 instead of `<a ...>` and `</a>`, and delete the `tile-go` line. A box that looks
 clickable but goes nowhere is worse than one that doesn't.
+
+### Adding a row to Other work
+
+Other work is a slim list. On a computer, hovering a row shows its picture next
+to the cursor; on a phone each row shows a small thumbnail. Copy a whole row
+from `<li>` down to `</li>` and change the link, the picture (it appears twice:
+in `data-preview` and in the `<img>`), and the words:
+
+```html
+<li>
+  <a class="wi-row" href="https://wherever-it-lives.com" target="_blank" rel="noopener" data-preview="assets/your-picture.jpg">
+    <img class="wi-thumb" src="assets/your-picture.jpg" loading="lazy" alt="What the picture shows.">
+    <span class="wi-kicker">Category</span>
+    <span class="wi-title">Name of the thing</span>
+    <span class="wi-line">One or two sentences on what it was and what you did.</span>
+    <span class="wi-go"><span class="visually-hidden">Where the link goes</span><span aria-hidden="true">→</span></span>
+  </a>
+</li>
+```
+
+Nowhere to send people? Copy the **Peer support server** row instead: it uses
+`<div class="wi-row" ...>` and has no arrow.
 
 The boxes arrange themselves. Two, three, five — they will lay out sensibly on
 every screen, so you never need to touch the layout.
@@ -235,9 +258,9 @@ Three bits of copy are mine rather than yours, and you will write them better:
 
 ### 4. Replace the hero photo, if you want
 
-The current one is the selfie from your Notion page. It is warm and it works. If
-you have something you like more, save it as `assets/home-1-lavender.jpg` and it will
-swap straight in.
+The current one is your lavender-eyeshadow selfie, saved as `assets/home-profile.jpg`.
+To change it, save a new portrait over that file. Keep it under about 250 KB (roughly
+800px wide is plenty) so the page stays quick; the frame crops it to a 4:5 arch.
 
 ---
 
