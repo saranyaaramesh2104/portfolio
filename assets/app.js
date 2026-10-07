@@ -434,7 +434,9 @@
         entry.target.classList.add('is-visible');
         observer.unobserve(entry.target);
       });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+      // Fires just before a section scrolls in, not once it is well inside:
+      // waiting left a visibly empty gap during a slow scroll.
+    }, { rootMargin: '0px 0px 60px 0px', threshold: 0 });
   }
 
   function observeReveals() {

@@ -868,7 +868,7 @@ body.a11y-cursor, body.a11y-cursor * {
 body.a11y-motion *, body.a11y-motion *::before, body.a11y-motion *::after {
   animation: none !important; transition: none !important; scroll-behavior: auto !important;
 }
-body.a11y-motion .reveal { opacity: 1 !important; transform: none !important; filter: none !important; }
+body.a11y-motion .reveal, body.a11y-motion .ink.reveal > .wrap { opacity: 1 !important; transform: none !important; filter: none !important; }
 body.a11y-motion .shots--slides figure:hover { transform: none !important; }
 body.a11y-motion .shots--slides:hover figure:not(:hover) { filter: none !important; opacity: 1 !important; }
 body.a11y-motion .parallax { transform: none !important; }
@@ -878,7 +878,7 @@ body.a11y-motion .parallax { transform: none !important; }
     animation-duration: .001ms !important; animation-iteration-count: 1 !important;
     transition-duration: .001ms !important; scroll-behavior: auto !important;
   }
-  .reveal { opacity: 1 !important; transform: none !important; filter: none !important; }
+  .reveal, .ink.reveal > .wrap { opacity: 1 !important; transform: none !important; filter: none !important; }
   .shots--slides figure:hover { transform: none !important; }
   .shots--slides:hover figure:not(:hover) { filter: none !important; opacity: 1 !important; }
   .marquee-track { animation: none !important; }
@@ -891,6 +891,16 @@ html.js .reveal {
   transition: opacity .55s var(--ease-out), transform .55s var(--ease-out), filter .42s var(--ease-out);
 }
 html.js .reveal.is-visible { opacity: 1; transform: none; filter: blur(0); }
+/* A dark band fading as a whole showed the light page through it until the
+   reveal fired, which read as numbers that had not loaded. The band itself
+   stays solid; only its contents arrive. No blur either: filtering a
+   full-width band is the costliest part of the effect on slower phones. */
+html.js .ink.reveal { opacity: 1; transform: none; filter: none; }
+html.js .ink.reveal > .wrap {
+  opacity: 0; transform: translateY(14px);
+  transition: opacity .45s var(--ease-out), transform .45s var(--ease-out);
+}
+html.js .ink.reveal.is-visible > .wrap { opacity: 1; transform: none; }
 
 /* Children arrive one behind another instead of the whole section lifting as
    a single curtain. 8px and 30ms apart, following the Subtle stagger preset:
