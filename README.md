@@ -2,8 +2,6 @@
 
 Personal portfolio site for Saranyaa Ramesh, writer and creative strategist.
 
-**→ [How to publish this and edit it later](HOW-TO-UPDATE.md)**
-
 ## Running it
 
 Open `index.html` in a browser. There is no build step and no dependencies.
