@@ -262,6 +262,13 @@ The current one is your lavender-eyeshadow selfie, saved as `assets/home-profile
 To change it, save a new portrait over that file. Keep it under about 250 KB (roughly
 800px wide is plenty) so the page stays quick; the frame crops it to a 4:5 arch.
 
+### 5. Update your résumé
+
+The site links to `assets/saranyaa-resume.pdf`. To update it, rename your new PDF
+to exactly `saranyaa-resume.pdf` and upload it into `assets`; GitHub replaces the
+old one and the link keeps working. Uploading under a different name adds a
+second file that nothing points to.
+
 ---
 
 ## What is in the folder
